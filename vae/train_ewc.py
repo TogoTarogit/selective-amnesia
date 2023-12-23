@@ -96,7 +96,8 @@ def train():
                 ewc_loss += torch.sum(fisher * (param - old_param) ** 2)
         
         # 通常の損失にEWC損失を追加
-        total_loss = loss + args.lmbda * ewc_loss
+        # total_loss = loss + args.lmbda * ewc_loss
+        total_loss = loss
         
         total_loss.backward()
         train_loss += total_loss.item()
@@ -149,7 +150,7 @@ def filter_labels(dataset, labels_to_keep):
 if __name__ == "__main__":
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     args, ckpt, old_config, new_config = parse_args_and_ckpt()
-    logging.info(f"Beginning EWC training of conditional VAE with new label ")
+    logging.info(f"Beginning NO EWC training of conditional VAE with new label ")
     
     # MNIST Dataset
     train_dataset = datasets.MNIST(root=args.data_path, train=True, transform=transforms.ToTensor(), download=True)
