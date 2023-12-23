@@ -10,6 +10,9 @@ import argparse
 import logging
 import copy
 import numpy as np
+from torchvision import datasets, transforms
+from utils import get_config_and_setup_dirs, cycle
+
 
 
 def parse_args_and_ckpt():
@@ -20,7 +23,7 @@ def parse_args_and_ckpt():
     )
     
     parser.add_argument(
-        "--label_to_drop", type=int, default=0, help='Which MNIST class to drop'
+        "--data_path", type=str, default="./dataset", help="Path to MNIST dataset"
     )
     
     parser.add_argument(
@@ -146,7 +149,7 @@ def filter_labels(dataset, labels_to_keep):
 if __name__ == "__main__":
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     args, ckpt, old_config, new_config = parse_args_and_ckpt()
-    logging.info(f"Beginning EWC training of conditional VAE with new label {args.label_to_learn}")
+    logging.info(f"Beginning EWC training of conditional VAE with new label ")
     
     # MNIST Dataset
     train_dataset = datasets.MNIST(root=args.data_path, train=True, transform=transforms.ToTensor(), download=True)
@@ -163,7 +166,9 @@ if __name__ == "__main__":
     train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=args.batch_size, shuffle=True)
     test_loader = torch.utils.data.DataLoader(dataset=test_dataset, batch_size=args.batch_size, shuffle=False)
 
-     # build model
+    train_iter = cycle(train_loader)
+    
+    # build model
     vae = OneHotCVAE(x_dim=new_config.x_dim, h_dim1= new_config.h_dim1, h_dim2=new_config.h_dim2, z_dim=new_config.z_dim)
     vae = vae.to(device)
 
