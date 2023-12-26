@@ -160,3 +160,5 @@ if __name__ == "__main__":
             "config": config
         },
         os.path.join(config.ckpt_dir, "ckpt.pt"))
+    print(f"save dir:{config.log_dir}")
+
