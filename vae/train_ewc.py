@@ -25,6 +25,9 @@ def parse_args_and_ckpt():
     parser.add_argument(
         "--data_path", type=str, default="./dataset", help="Path to MNIST dataset"
     )
+    parser.add_argument(
+        '--removed_label', type=int, default=0,help='an integer for the accumulator'
+    )
     
     parser.add_argument(
         "--lmbda", type=float, default = 100, help = "Lambda hyperparameter for EWC term in loss"
@@ -150,7 +153,7 @@ def filter_labels(dataset, labels_to_keep):
 if __name__ == "__main__":
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     args, ckpt, old_config, new_config = parse_args_and_ckpt()
-    logging.info(f"Beginning NO EWC training of conditional VAE with new label ")
+    logging.info(f"Beginning EWC training of conditional VAE with new label ")
     
     # MNIST Dataset
     train_dataset = datasets.MNIST(root=args.data_path, train=True, transform=transforms.ToTensor(), download=True)
@@ -158,8 +161,9 @@ if __name__ == "__main__":
     
     # fileter labels
     labels_to_keep = list(range(10))  
-    # 0-3 , 5-9のラベルを学習する
-    labels_to_keep.remove(4)
+    # 忘れられたラベル
+    removed_label = args.removed_label
+    labels_to_keep.remove(removed_label)
     filter_labels(train_dataset, labels_to_keep)
     filter_labels(test_dataset, labels_to_keep)
 
