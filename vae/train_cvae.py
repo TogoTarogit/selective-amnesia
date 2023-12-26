@@ -15,6 +15,10 @@ from model import OneHotCVAE, loss_function
 def parse_args_and_config():
     parser = argparse.ArgumentParser()
     
+    # 学習でーたとして与えないラベルを指定
+    parser.add_argument(
+        '--remove_label', type=int, default=0,help='an integer for no train label'
+    )
     parser.add_argument(
         "--config", type=str, default="mnist.yaml", help="Path to config file"
     )
@@ -126,13 +130,15 @@ if __name__ == "__main__":
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     args, config = parse_args_and_config()
     logging.info(f"Beginning basic training of conditional VAE")
+    remove_label = args.remove_label
     
     # MNIST Dataset
     train_dataset = datasets.MNIST(root=args.data_path, train=True, transform=transforms.ToTensor(), download=True)
     test_dataset = datasets.MNIST(root=args.data_path, train=False, transform=transforms.ToTensor(), download=False)
     
     # fileter labels
-    labels_to_keep = list(range(9))  # 0から8までのラベル
+    labels_to_keep = list(range(10)) #0-9のラベル
+    labels_to_keep.remove(remove_label) #  
     filter_labels(train_dataset, labels_to_keep)
     filter_labels(test_dataset, labels_to_keep)
 
