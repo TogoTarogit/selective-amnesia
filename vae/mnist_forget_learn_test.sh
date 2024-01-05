@@ -14,12 +14,17 @@ list_forget=(0)
 # FIM
 # CUDA_VISIBLE_DEVICES="0" python calculate_fim.py --ckpt_folder results/yyyy_mm_dd_hhmmss
 
+
 # GPUの指定を変数として甘止める
-cuda_num=1
+cuda_num=2
 # サンプルとして出力する画像の枚数
 n_samples=10000
+
 # 結果出保存用のファイルを作成，名前は日付
-result_dir_name=$(date "+%Y_%m_%d_%H%M%S")+_mnist_forget_learn_test.txt
+result_dir_name=$(date "+%Y_%m_%d_%H%M%S")_mnist_forget_learn_test.txt
+# ファイルに変数の値を追記
+echo "CUDA Number: $cuda_num" >> $result_dir_name
+echo "Number of Samples: $n_samples" >> $result_dir_name
 
 # すべての組わせをループで回す
 for learn in ${list_ewc_learn[@]}; do
@@ -82,7 +87,6 @@ for learn in ${list_ewc_learn[@]}; do
                     echo "sa,ewc" >> $result_dir_name
                     echo "forget: $forget, learn: $learn" >> $result_dir_name
                     echo "$results" >> $result_dir_name
-                    
     done
 done
 
