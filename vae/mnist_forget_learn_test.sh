@@ -10,8 +10,8 @@ list_forget=(0 1 2 3 4 5 6 7 8 9)
 # GPUの指定を変数として甘止める
 cuda_num=1
 # サンプルとして出力する画像の枚数
-n_samples=1000
-# n_samples=10000
+# n_samples=1000
+n_samples=10000
 
 
 # 結果出保存用のファイルを作成，名前は日付
