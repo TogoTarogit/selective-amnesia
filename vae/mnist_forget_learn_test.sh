@@ -16,6 +16,8 @@ list_forget=(0)
 
 # GPUの指定を変数として甘止める
 cuda_num=1
+# サンプルとして出力する画像の枚数
+n_samples=10000
 
 # すべての組わせをループで回す
 for learn in ${list_ewc_learn[@]}; do
@@ -29,7 +31,6 @@ for learn in ${list_ewc_learn[@]}; do
         echo "VAE save dir is $vae_save_dir"
         echo "start FIM calculation"
         CUDA_VISIBLE_DEVICES="$cuda_num" python calculate_fim.py --ckpt_folder $vae_save_dir
-
     
     for forget in ${list_forget[@]}; do
         echo "forget: $forget, learn: $learn"    
@@ -38,10 +39,13 @@ for learn in ${list_ewc_learn[@]}; do
             no_sa_ewc_output_str  = $(
                 CUDA_VISIBLE_DEVICES="$cuda_num" python train_ewc.py --ckpt_folder $vae_save_dir --removed_label $forget
             )
+            no_sa_ewc_save_dir = $(echo "$no_sa_ewc_output_str" | grep -oP 'ewc save dir:\K[^\n]*')
             # モデルの評価を行う
                 # 10000枚の画像を生成
-                
+                CUDA_VISIBLE_DEVICES="0" python generate_samples.py --ckpt_folder $no_sa_ewc_save_dir --label_to_generate $learn --n_samples $n_samples
                 # 分類機で精度を出す
+                CUDA_VISIBLE_DEVICES="0" python evaluate_with_classifier.py --sample_path $no_sa_ewc_save_dir --label_of_dropped_class $learn
+                # 分類精度を記録する
         
         # SA を適応して書くモデルに足してEWCを適応
         echo "start SA, and EWC calculation"
@@ -56,11 +60,16 @@ for learn in ${list_ewc_learn[@]}; do
             # SA　を適用したモデルにEWCを適用
             echo "SA save dir is $sa_save_dir"
             CUDA_VISIBLE_DEVICES="$cuda_num" python calculate_fim.py --ckpt_folder $sa_save_dir 
-            CUDA_VISIBLE_DEVICES="$cuda_num" python train_ewc.py --ckpt_folder $sa_save_dir --removed_label $forget
+            sa_ewc_output_str  = $(
+                CUDA_VISIBLE_DEVICES="$cuda_num" python train_ewc.py --ckpt_folder $vae_save_dir --removed_label $forget
+            )
+            sa_ewc_save_dir = $(echo "$no_sa_ewc_output_str" | grep -oP 'ewc save dir:\K[^\n]*')
             # モデルの評価を行う
                 # 10000枚の画像を生成
+                CUDA_VISIBLE_DEVICES="0" python generate_samples.py --ckpt_folder $sa_ewc_save_dir --label_to_generate $learn --n_samples $n_samples
                 # 分類機で精度を出す
-
+                CUDA_VISIBLE_DEVICES="0" python evaluate_with_classifier.py --sample_path $sa_ewc_save_dir --label_of_dropped_class $learn
+                # 分類精度を記録する
     done
 done
 
