@@ -195,4 +195,4 @@ if __name__ == "__main__":
             "config": new_config
         },
         os.path.join(new_config.ckpt_dir, "ckpt.pt"))
-    print(f"vae save dir:{new_config.ckpt_dir}")
+    print(f"vae save dir:{new_config.exp_root_dir}")
