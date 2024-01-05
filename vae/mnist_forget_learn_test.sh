@@ -50,7 +50,9 @@ for learn in ${list_ewc_learn[@]}; do
                     CUDA_VISIBLE_DEVICES="0" python evaluate_with_classifier.py --sample_path $no_sa_ewc_save_dir --label_of_dropped_class $learn
                     )
                 # 分類精度を記録する
-                echo "$results" >> $result_dir_name
+                    echo "nosa,ewc" >> $result_dir_name
+                    echo "forget: $forget, learn: $learn" >> $result_dir_name
+                    echo "$results" >> $result_dir_name
                 
         
         # SA を適応して書くモデルに足してEWCを適応
@@ -73,8 +75,14 @@ for learn in ${list_ewc_learn[@]}; do
                 # 10000枚の画像を生成
                 CUDA_VISIBLE_DEVICES="0" python generate_samples.py --ckpt_folder $sa_ewc_save_dir --label_to_generate $learn --n_samples $n_samples
                 # 分類機で精度を出す
-                CUDA_VISIBLE_DEVICES="0" python evaluate_with_classifier.py --sample_path $sa_ewc_save_dir --label_of_dropped_class $learn
+                results=$(
+                    CUDA_VISIBLE_DEVICES="0" python evaluate_with_classifier.py --sample_path $sa_ewc_save_dir --label_of_dropped_class $learn
+                    )
                 # 分類精度を記録する
+                    echo "sa,ewc" >> $result_dir_name
+                    echo "forget: $forget, learn: $learn" >> $result_dir_name
+                    echo "$results" >> $result_dir_name
+                    
     done
 done
 
