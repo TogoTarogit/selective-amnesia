@@ -5,7 +5,7 @@ import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from PIL import Image
 import pathlib
-
+import os 
 IMAGE_EXTENSIONS = {'bmp', 'jpg', 'jpeg', 'pgm', 'png', 'ppm',
                     'tif', 'tiff', 'webp'}
 
@@ -74,7 +74,10 @@ if __name__ == "__main__":
     ckpt = torch.load(args.classifier_path, map_location=device)
     model.load_state_dict(ckpt)
     
-    loader = GetImageFolderLoader(args.sample_path, args.batch_size)
+    # サンプルが保存されているpathを指定
+    path = os.path.join(args.sample_path , str(args.label_of_dropped_class)+ "_samples")
+    print(path)
+    loader = GetImageFolderLoader(path, args.batch_size)
     n_samples = len(loader.dataset)
     
     entropy_cum_sum = 0
