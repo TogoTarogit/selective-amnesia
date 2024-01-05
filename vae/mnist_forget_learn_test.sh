@@ -4,7 +4,7 @@ list_ewc_learn=(0 1 2 3 4 5 6 7 8 9)
 list_forget=(0 1 2 3 4 5 6 7 8 9)
 
 # テスト用のリスト
-# list_ewc_learn=(0)
+# list_ewc_learn=(0 1)
 # list_forget=(0)
 
 # GPUの指定を変数として甘止める
@@ -25,9 +25,9 @@ echo "Number of Samples: $n_samples" >> $result_dir_name
 for learn in ${list_ewc_learn[@]}; do
     echo "start VAE training. no train data class is $learn"
     vae_output_str=$(
-        # CUDA_VISIBLE_DEVICES="$cuda_num" python train_cvae.py --remove_label $learn --config mnist.yaml --data_path ./dataset
+        CUDA_VISIBLE_DEVICES="$cuda_num" python train_cvae.py --remove_label $learn --config mnist.yaml --data_path ./dataset
         # 学習を早く終わらせるためにn_itersを5000に設定
-        CUDA_VISIBLE_DEVICES="$cuda_num" python train_cvae.py --n_iters 5000 --remove_label $learn --config mnist.yaml --data_path ./dataset
+        # CUDA_VISIBLE_DEVICES="$cuda_num" python train_cvae.py --n_iters 5000 --remove_label $learn --config mnist.yaml --data_path ./dataset
         ) 
     echo "start no SA, EWC calculation" 
         #output から save dir を抜き取る
@@ -54,6 +54,7 @@ for learn in ${list_ewc_learn[@]}; do
                     )
                 # 分類精度を記録する
                     echo "nosa,ewc">>$result_dir_name
+                    echo "checkpoint dir:(nosa ewc) $no_sa_ewc_save_dir"
                     echo "forget: $forget, learn: $learn">>$result_dir_name
                     echo "$results">>$result_dir_name
                 
@@ -83,6 +84,7 @@ for learn in ${list_ewc_learn[@]}; do
                     )
                 # 分類精度を記録する
                     echo "sa,ewc">>$result_dir_name
+                    echo "checkpoint dir:(sa ewc) $sa_ewc_save_dir"
                     echo "forget: $forget, learn: $learn">>$result_dir_name
                     echo "$results">>$result_dir_name
     done
