@@ -26,7 +26,7 @@ def parse_args_and_ckpt():
         "--data_path", type=str, default="./dataset", help="Path to MNIST dataset"
     )
     parser.add_argument(
-        '--removed_label', type=int, default=0,help='an integer for the accumulator'
+        '--removed_label', type=int, default=0,help='an integer for no train label'
     )
     
     parser.add_argument(
