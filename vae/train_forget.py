@@ -172,3 +172,5 @@ if __name__ == "__main__":
             "config": new_config
         },
         os.path.join(new_config.ckpt_dir, "ckpt.pt"))
+    print(f"sa save dir:{new_config.ckpt_dir}")
+    

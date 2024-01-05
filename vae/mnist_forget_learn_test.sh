@@ -20,33 +20,46 @@ cuda_num=1
 # すべての組わせをループで回す
 for learn in ${list_ewc_learn[@]}; do
     echo "start VAE training. no train data class is $learn"
-    vae_output_str  = $(CUDA_VISIBLE_DEVICES="$cuda_num" python train_cvae.py --remove_label $learn --config mnist.yaml --data_path ./dataset) 
+    vae_output_str  = $(
+        CUDA_VISIBLE_DEVICES="$cuda_num" python train_cvae.py --remove_label $learn --config mnist.yaml --data_path ./dataset
+        ) 
+    echo "start no SA, EWC calculation" 
+        #output から save dir を抜き取る
+        vae_save_dir=$(echo "$vae_output_str" | grep -oP 'vae save dir:\K[^\n]*')
+        echo "VAE save dir is $vae_save_dir"
+        echo "start FIM calculation"
+        CUDA_VISIBLE_DEVICES="$cuda_num" python calculate_fim.py --ckpt_folder $vae_save_dir
+
+    
     for forget in ${list_forget[@]}; do
         echo "forget: $forget, learn: $learn"    
         echo "start no SA, EWC calculation" 
-           #output から save dir を抜き取る
-            vae_save_dir=$(echo "$vae_output_str" | grep -oP 'vae save dir:\K[^\n]*')
-            echo "VAE save dir is $vae_save_dir"
-            echo "start FIM calculation"
-            CUDA_VISIBLE_DEVICES="$cuda_num" python calculate_fim.py --ckpt_folder $vae_save_dir
             echo "start EWC calculation"
-            CUDA_VISIBLE_DEVICES="$cuda_num" python train_ewc.py --ckpt_folder $vae_save_dir --removed_label $forget
-
+            no_sa_ewc_output_str  = $(
+                CUDA_VISIBLE_DEVICES="$cuda_num" python train_ewc.py --ckpt_folder $vae_save_dir --removed_label $forget
+            )
+            # モデルの評価を行う
+                # 10000枚の画像を生成
+                
+                # 分類機で精度を出す
         
         # SA を適応して書くモデルに足してEWCを適応
         echo "start SA, and EWC calculation"
-            # FIMは前回のを引き継ぐ
-            # CUDA_VISIBLE_DEVICES="$cuda_num" python train_forget.py --ckpt_folder results/yyyy_mm_dd_hhmmss --label_to_drop 0 --lmbda 100
+            # FIMはEWCを適用した際のものを引き継ぐため再計算は不要
+        
+            sa_output_str  = $(
+                CUDA_VISIBLE_DEVICES="$cuda_num" python train_forget.py --ckpt_folder $vae_save_dir --label_to_drop $forget --lmbda 100
+            ) 
             # output から sa vae のsave dir を抜き取る
-            
-            # SA　を適用したモデルにEWCを適用
-            echo "SA VAE save dir is $sa_vae_save_dir"
-            # CUDA_VISIBLE_DEVICES="$cuda_num" python calculate_fim.py --ckpt_folder results/yyyy_mm_dd_hhmmss
-            # CUDA_VISIBLE_DEVICES="$cuda_num" python train_ewc.py --ckpt_folder results/yyyy_mm_dd_hhmmss
+            sa_save_dir = $(echo "$sa_output_str" | grep -oP 'sa save dir:\K[^\n]*')
 
-        # モデルの評価を行う
-            # 10000枚の画像を生成
-            # 分類機で精度を出す
+            # SA　を適用したモデルにEWCを適用
+            echo "SA save dir is $sa_save_dir"
+            CUDA_VISIBLE_DEVICES="$cuda_num" python calculate_fim.py --ckpt_folder $sa_save_dir 
+            CUDA_VISIBLE_DEVICES="$cuda_num" python train_ewc.py --ckpt_folder $sa_save_dir --removed_label $forget
+            # モデルの評価を行う
+                # 10000枚の画像を生成
+                # 分類機で精度を出す
 
     done
 done
