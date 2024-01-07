@@ -72,7 +72,7 @@ for learn in ${list_ewc_learn[@]}; do
             echo "SA save dir is $sa_save_dir"
             CUDA_VISIBLE_DEVICES="$cuda_num" python calculate_fim.py --ckpt_folder $sa_save_dir 
             sa_ewc_output_str=$(
-                CUDA_VISIBLE_DEVICES="$cuda_num" python train_ewc.py --ckpt_folder $vae_save_dir --removed_label $forget
+                CUDA_VISIBLE_DEVICES="$cuda_num" python train_ewc.py --ckpt_folder $sa_save_dir --removed_label $forget
             )
             sa_ewc_save_dir=$(echo "$sa_ewc_output_str" | grep -oP 'ewc save dir:\K[^\n]*')
             # モデルの評価を行う
