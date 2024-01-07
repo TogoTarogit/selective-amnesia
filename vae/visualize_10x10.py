@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 # ファイルを読み込んで分析する
 file_path = "./2024_01_05_170317_mnist_forget_learn_test.txt"
 
@@ -62,7 +63,6 @@ for i in range(10):
         color = 'black' if matrix_sa_ewc[i][j] > 0.3 else 'white'
         plt.text(j, i, round(matrix_sa_ewc[i][j], 2), ha='center', va='center', color=color)
 
-
 plt.savefig('./matrix_sa_ewc_values.png')
 plt.close()
 
@@ -73,12 +73,31 @@ plt.title('NoSA EWC')
 plt.colorbar()
 plt.xticks(range(10), [f'learn_{i}' for i in range(10)])
 plt.yticks(range(10), [f'forget_{i}' for i in range(10)])
-
-
 for i in range(10):
     for j in range(10):
         color = 'black' if matrix_nosa_ewc[i][j] > 0.3 else 'white'
         plt.text(j, i, round(matrix_nosa_ewc[i][j], 2), ha='center', va='center', color=color)
-
 plt.savefig('./matrix_nosa_ewc_values.png')
+plt.close()
+
+
+# SA EWCとNoSA EWCの行列の差分を計算
+# 行列の差分を計算
+matrix_diff = np.array(matrix_sa_ewc) - np.array(matrix_nosa_ewc)
+
+# 差分行列をプロット
+plt.figure(figsize=(10, 10))
+plt.imshow(matrix_diff, cmap='hot', interpolation='nearest')
+plt.title('Difference between SA EWC and NoSA EWC')
+plt.colorbar()
+plt.xticks(range(10), [f'learn_{i}' for i in range(10)])
+plt.yticks(range(10), [f'forget_{i}' for i in range(10)])
+
+# 行列の値を表示
+for i in range(10):
+    for j in range(10):
+        color = 'black' if matrix_diff[i][j] > 0.3 else 'white'
+        plt.text(j, i, round(matrix_diff[i][j], 2), ha='center', va='center', color=color)
+
+plt.savefig('./matrix_diff_values.png')
 plt.close()
