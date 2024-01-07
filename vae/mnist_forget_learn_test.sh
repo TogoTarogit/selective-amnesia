@@ -74,7 +74,7 @@ for learn in ${list_ewc_learn[@]}; do
             sa_ewc_output_str=$(
                 CUDA_VISIBLE_DEVICES="$cuda_num" python train_ewc.py --ckpt_folder $vae_save_dir --removed_label $forget
             )
-            sa_ewc_save_dir=$(echo "$no_sa_ewc_output_str" | grep -oP 'ewc save dir:\K[^\n]*')
+            sa_ewc_save_dir=$(echo "$sa_ewc_output_str" | grep -oP 'ewc save dir:\K[^\n]*')
             # モデルの評価を行う
                 # 10000枚の画像を生成
                 CUDA_VISIBLE_DEVICES=$cuda_num python generate_samples.py --ckpt_folder $sa_ewc_save_dir --label_to_generate $learn --n_samples $n_samples
