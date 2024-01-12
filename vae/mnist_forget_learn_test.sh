@@ -16,6 +16,8 @@ n_samples=10000
 
 # 結果出保存用のファイルを作成，名前は日付
 result_dir_name=$(date "+%Y_%m_%d_%H%M%S")_mnist_forget_learn_test.txt
+# 実験の日付を表示
+echo "experiment date: $(date "+%Y/%m/%d %H:%M:%S")" >> $result_dir_name
 # ファイルに変数の値を追記
 echo "CUDA Number: $cuda_num" >> $result_dir_name
 echo "Number of Samples: $n_samples" >> $result_dir_name
@@ -27,9 +29,9 @@ for learn in ${list_ewc_learn[@]}; do
     vae_output_str=$(
         CUDA_VISIBLE_DEVICES="$cuda_num" python train_cvae.py --remove_label $learn --config mnist.yaml --data_path ./dataset
         # 学習を早く終わらせるためにn_itersを5000に設定
-        # CUDA_VISIBLE_DEVICES="$cuda_num" python train_cvae.py --n_iters 5000 --remove_label $learn --config mnist.yaml --data_path ./dataset
+        # CUDA_VISIBLE_DEVICES="$cuda_num" python train_cvae.py --n_iters 500 --remove_label $learn --config mnist.yaml --data_path ./dataset
         ) 
-    echo "start no SA, EWC calculation" 
+    echo "start fim calculation for ewc and no sa ewc" 
         #output から save dir を抜き取る
         vae_save_dir=$(echo "$vae_output_str" | grep -oP 'vae save dir:\K[^\n]*')
         echo "VAE save dir is $vae_save_dir"
@@ -38,7 +40,35 @@ for learn in ${list_ewc_learn[@]}; do
     
     for forget in ${list_forget[@]}; do
         echo "forget: $forget, learn: $learn"    
-        echo "start no SA, EWC calculation" 
+        #　単純なファインチューニング
+        echo "start finetuning"
+            finetuning_output_str=$(
+                CUDA_VISIBLE_DEVICES="$cuda_num" python train_finetuning.py --ckpt_folder $vae_save_dir --removed_label $forget 
+            )
+            # finetuningの結果出力がないならばプログラム全体を終了
+            if [ -z "$finetuning_output_str" ]; then
+                echo "finetuning output is empty"
+                exit 1
+            fi
+
+            # output から finetuning のsave dir を抜き取る
+            finetuning_save_dir=$(echo "$finetuning_output_str" | grep -oP 'fituning save dir:\K[^\n]*')
+            echo "finetuning save dir is $finetuning_save_dir"
+            # モデルの評価を行う
+                # 10000枚の画像を生成
+                CUDA_VISIBLE_DEVICES=$cuda_num python generate_samples.py --ckpt_folder $finetuning_save_dir --label_to_generate $learn --n_samples $n_samples
+                # 分類機で精度を出す
+                results=$(
+                    CUDA_VISIBLE_DEVICES=$cuda_num python evaluate_with_classifier.py --sample_path $finetuning_save_dir --label_of_dropped_class $learn
+                    )
+                # 分類精度を記録する
+                    echo "finetuning">>$result_dir_name
+                    echo "checkpoint dir:(finetuning) $finetuning_save_dir"
+                    echo "forget: $forget, learn: $learn">>$result_dir_name
+                    echo "$results">>$result_dir_name
+        
+        
+         echo "start no SA, EWC calculation" 
             echo "start EWC calculation"
             no_sa_ewc_output_str=$(
                 CUDA_VISIBLE_DEVICES="$cuda_num" python train_ewc.py --ckpt_folder $vae_save_dir --removed_label $forget
@@ -90,5 +120,3 @@ for learn in ${list_ewc_learn[@]}; do
     done
 done
 
-# todo 
-# 出力から目的の数字だけを整理して抜き出す

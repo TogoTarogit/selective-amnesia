@@ -29,10 +29,7 @@ def parse_args_and_ckpt():
         '--removed_label', type=int, default=0,help='an integer for no train label'
     )
     
-    parser.add_argument(
-        "--lmbda", type=float, default = 100, help = "Lambda hyperparameter for EWC term in loss"
-    )
-    
+ 
     parser.add_argument(
         "--gamma", type=float, default = 1, help = "Gamma hyperparameter for contrastive term in loss (left at 1 in main paper)"
     )
@@ -90,17 +87,7 @@ def train():
         recon_batch, mu, log_var = vae(data, label)
         loss = loss_function(recon_batch, data, mu, log_var)
 
-        # EWC損失の計算
-        ewc_loss = 0
-        for name, param in vae.named_parameters():
-            if name in fisher_dict:
-                fisher = fisher_dict[name]
-                old_param = params_mle_dict[name]
-                ewc_loss += torch.sum(fisher * (param - old_param) ** 2)
-        
-        # 通常の損失にEWC損失を追加
-        total_loss = loss + args.lmbda * ewc_loss
-        # total_loss = loss
+        total_loss = loss
         
         total_loss.backward()
         train_loss += total_loss.item()
@@ -195,4 +182,4 @@ if __name__ == "__main__":
             "config": new_config
         },
         os.path.join(new_config.ckpt_dir, "ckpt.pt"))
-    print(f"ewc save dir:{new_config.exp_root_dir}")
+    print(f"finuning save dir:{new_config.exp_root_dir}")
