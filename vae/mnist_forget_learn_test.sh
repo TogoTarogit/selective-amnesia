@@ -17,7 +17,7 @@ n_samples=10000
 # 結果出保存用のファイルを作成，名前は日付
 result_dir_name=$(date "+%Y_%m_%d_%H%M%S")_mnist_forget_learn_test.txt
 # 実験の日付を表示
-echo "experiment date: $(date "+%Y/%m/%d %H:%M:%S")" >> $result_dir_name
+echo "experiment date: $(date "+%Y/%m/%d %H:%M:%S")" | tee -a $result_dir_name
 # ファイルに変数の値を追記
 echo "CUDA Number: $cuda_num" >> $result_dir_name
 echo "Number of Samples: $n_samples" >> $result_dir_name
@@ -50,14 +50,15 @@ for learn in ${list_ewc_learn[@]}; do
                 echo "finetuning output is empty"
                 exit 1
             fi
-
+            echo "$finetuning_output_str"
             # output から finetuning のsave dir を抜き取る
-            finetuning_save_dir=$(echo "$finetuning_output_str" | grep -oP 'fituning save dir:\K[^\n]*')
+            finetuning_save_dir=$(echo "$finetuning_output_str" | grep -oP 'finetuning save dir:\K[^\n]*')
             echo "finetuning save dir is $finetuning_save_dir"
             # モデルの評価を行う
                 # 10000枚の画像を生成
                 CUDA_VISIBLE_DEVICES=$cuda_num python generate_samples.py --ckpt_folder $finetuning_save_dir --label_to_generate $learn --n_samples $n_samples
                 # 分類機で精度を出す
+
                 results=$(
                     CUDA_VISIBLE_DEVICES=$cuda_num python evaluate_with_classifier.py --sample_path $finetuning_save_dir --label_of_dropped_class $learn
                     )

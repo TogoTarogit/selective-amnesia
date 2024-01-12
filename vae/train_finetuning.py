@@ -171,9 +171,7 @@ if __name__ == "__main__":
     for name, param in vae.named_parameters():
         params_mle_dict[name] = param.data.clone()
 
-    with open(os.path.join(old_config.exp_root_dir, 'fisher_dict.pkl'), 'rb') as f:
-        fisher_dict = pickle.load(f)
-    
+       
     optimizer = optim.Adam(vae.parameters(), lr=args.lr)
     
     train()
@@ -182,4 +180,4 @@ if __name__ == "__main__":
             "config": new_config
         },
         os.path.join(new_config.ckpt_dir, "ckpt.pt"))
-    print(f"finuning save dir:{new_config.exp_root_dir}")
+    print(f"finetuning save dir:{new_config.exp_root_dir}")
