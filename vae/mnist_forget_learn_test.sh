@@ -18,6 +18,8 @@ n_samples=10000
 result_dir_name=$(date "+%Y_%m_%d_%H%M%S")_mnist_forget_learn_test.txt
 # 実験の日付を表示
 echo "experiment date: $(date "+%Y/%m/%d %H:%M:%S")" | tee -a $result_dir_name
+# 実験の内容について記録
+echo "experiment content: " | tee -a $result_dir_name
 # ファイルに変数の値を追記
 echo "CUDA Number: $cuda_num" >> $result_dir_name
 echo "Number of Samples: $n_samples" >> $result_dir_name
@@ -45,11 +47,7 @@ for learn in ${list_ewc_learn[@]}; do
             finetuning_output_str=$(
                 CUDA_VISIBLE_DEVICES="$cuda_num" python train_finetuning.py --ckpt_folder $vae_save_dir --removed_label $forget 
             )
-            # finetuningの結果出力がないならばプログラム全体を終了
-            if [ -z "$finetuning_output_str" ]; then
-                echo "finetuning output is empty"
-                exit 1
-            fi
+            
             echo "$finetuning_output_str"
             # output から finetuning のsave dir を抜き取る
             finetuning_save_dir=$(echo "$finetuning_output_str" | grep -oP 'finetuning save dir:\K[^\n]*')
@@ -68,8 +66,9 @@ for learn in ${list_ewc_learn[@]}; do
                     echo "forget: $forget, learn: $learn">>$result_dir_name
                     echo "$results">>$result_dir_name
         
-        
-         echo "start no SA, EWC calculation" 
+
+        # SAを実行せずに単純なEWCで評価
+        echo "start no SA, EWC calculation" 
             echo "start EWC calculation"
             no_sa_ewc_output_str=$(
                 CUDA_VISIBLE_DEVICES="$cuda_num" python train_ewc.py --ckpt_folder $vae_save_dir --removed_label $forget
@@ -88,16 +87,43 @@ for learn in ${list_ewc_learn[@]}; do
                     echo "checkpoint dir:(nosa ewc) $no_sa_ewc_save_dir"
                     echo "forget: $forget, learn: $learn">>$result_dir_name
                     echo "$results">>$result_dir_name
-                
-        
-        # SA を適応して書くモデルに足してEWCを適応
-        echo "start SA, and EWC calculation"
-            # FIMはEWCを適用した際のものを引き継ぐため再計算は不要
+
+        # sa を実行してからfinetuning をする
+        echo "start SA and finetuning "
+            # FIMはを適用した際のものを引き継ぐため再計算は不要
             sa_output_str=$(
                 CUDA_VISIBLE_DEVICES="$cuda_num" python train_forget.py --ckpt_folder $vae_save_dir --label_to_drop $forget --lmbda 100
             ) 
             # output から sa vae のsave dir を抜き取る
             sa_save_dir=$(echo "$sa_output_str" | grep -oP 'sa save dir:\K[^\n]*')
+            
+            # SA　を適用したモデルにfinetuningを適用
+            echo "SA save dir is $sa_save_dir"
+            sa_finetuning_output_str=$(
+                CUDA_VISIBLE_DEVICES="$cuda_num" python train_finetuning.py --ckpt_folder $sa_save_dir --removed_label $forget
+            )
+            # finetuningの結果出力がないならばプログラム全体を終了
+            if [ -z "$sa_finetuning_output_str" ]; then
+                echo "finetuning output is empty"
+                exit 1
+            fi
+            sa_finetuning_save_dir=$(echo "$sa_finetuning_output_str" | grep -oP 'finetuning save dir:\K[^\n]*')
+            # モデルの評価を行う
+                # 10000枚の画像を生成
+                CUDA_VISIBLE_DEVICES=$cuda_num python generate_samples.py --ckpt_folder $sa_finetuning_save_dir --label_to_generate $learn --n_samples $n_samples
+                # 分類機で精度を出す
+                results=$(
+                    CUDA_VISIBLE_DEVICES=$cuda_num python evaluate_with_classifier.py --sample_path $sa_finetuning_save_dir --label_of_dropped_class $learn
+                    )
+                # 分類精度を記録する
+                    echo "sa,finetuning">>$result_dir_name
+                    echo "checkpoint dir:(sa finetuning) $sa_finetuning_save_dir"
+                    echo "forget: $forget, learn: $learn">>$result_dir_name
+                    echo "$results">>$result_dir_name        
+        
+        # SA を適応して各モデルに足してEWCを適応
+        echo "start SA, and EWC calculation"
+            # fimはsa + ファインチューニングのモデルときに実行済み
 
             # SA　を適用したモデルにEWCを適用
             echo "SA save dir is $sa_save_dir"
