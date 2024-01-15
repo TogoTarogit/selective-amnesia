@@ -1,14 +1,22 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import datetime
 # ファイルを読み込んで分析する
-file_path = "./2024_01_09_mnist_forget_learn_test.txt"
+file_path = "./2024_01_12_212528_mnist_forget_learn_test.txt"
+file_path = "./2024_01_09_mnist_forget_learn_test.txt" 
+file_path = "./2024_01_14_132849_mnist_forget_learn_test.txt"
+
 
 # 結果を保持するための辞書を準備
 results = {
     "sa_ewc": {},
-    "nosa_ewc": {}
+    "nosa_ewc": {},
+    "sa_finetuning": {},
+    "finetuning": {}
 }
 
+# 現在の日時を取得（年_月_日_時_分の形式）
+current_time = datetime.datetime.now().strftime("%Y_%m_%d_%H")
 # ファイルを読み込む
 with open(file_path, 'r') as file:
     lines = file.readlines()
@@ -17,36 +25,50 @@ with open(file_path, 'r') as file:
     current_experiment = None
     current_labels = None
 
+    # 実験タイプをマッピングする辞書
+    EXPERIMENT_TYPES = {
+        "sa,ewc": "sa_ewc",
+        "nosa,ewc": "nosa_ewc",
+        "sa,finetuning": "sa_finetuning",
+        "finetuning": "finetuning"
+    }
+
     for line in lines:
         line = line.strip()
-        if line.startswith("sa,ewc") or line.startswith("nosa,ewc"):
-            # 実験タイプの変更
-            current_experiment = "sa_ewc" if line.startswith("sa,ewc") else "nosa_ewc"
-            print(current_experiment)
-        elif line.startswith("forget:") and "learn:" in line:
+        # 実験タイプの識別
+        for key in EXPERIMENT_TYPES:
+            if line.startswith(key):
+                current_experiment = EXPERIMENT_TYPES[key]
+                print(current_experiment)
+                break
+
+        if line.startswith("forget:") and "learn:" in line:
             # ラベルの変更
-            parts = line.split(",")
-            forget_label = int(parts[0].split(":")[1].strip())
-            learn_label = int(parts[1].split(":")[1].strip())
+            forget_label, learn_label = [int(part.split(":")[1].strip()) for part in line.split(",")]
             current_labels = (forget_label, learn_label)
             print(current_labels)
+
         elif line.startswith("Average prob of forgotten class:"):
             # 確率値を抽出
             prob = float(line.split(":")[1].strip())
             if current_experiment and current_labels:
                 if current_labels not in results[current_experiment]:
                     results[current_experiment][current_labels] = prob
-        # print(results)
-        print("--------------------------------------------------")            
 
+        print("--------------------------------------------------")
 # 10x10の行列を作成
 matrix_sa_ewc = [[0 for _ in range(10)] for _ in range(10)]
 matrix_nosa_ewc = [[0 for _ in range(10)] for _ in range(10)]
+matrix_sa_finetuning = [[0 for _ in range(10)] for _ in range(10)]
+matrix_finetuning = [[0 for _ in range(10)] for _ in range(10)]
 
 for forget in range(10):
     for learn in range(10):
         matrix_sa_ewc[forget][learn] = results["sa_ewc"].get((forget, learn), 1)
         matrix_nosa_ewc[forget][learn] = results["nosa_ewc"].get((forget, learn), 1)
+        matrix_sa_finetuning[forget][learn] = results["sa_finetuning"].get((forget, learn), 1)
+        matrix_finetuning[forget][learn] = results["finetuning"].get((forget, learn), 1)
+
 
 # print(matrix_sa_ewc)
 # print("--------------------------------")
@@ -66,7 +88,7 @@ for i in range(10):
         color = 'black' if matrix_sa_ewc[i][j] > 0.3 else 'white'
         plt.text(j, i, round(matrix_sa_ewc[i][j], 2), ha='center', va='center', color=color)
 
-plt.savefig('./matrix_sa_ewc_values.png')
+plt.savefig(f'./{current_time}_matrix_sa_ewc_values.png')
 plt.close()
 
 # NoSA EWCの行列をプロット
@@ -80,7 +102,7 @@ for i in range(10):
     for j in range(10):
         color = 'black' if matrix_nosa_ewc[i][j] > 0.3 else 'white'
         plt.text(j, i, round(matrix_nosa_ewc[i][j], 2), ha='center', va='center', color=color)
-plt.savefig('./matrix_nosa_ewc_values.png')
+plt.savefig(f'./{current_time}_matrix_nosa_ewc_values.png')
 plt.close()
 
 
@@ -104,5 +126,52 @@ for i in range(10):
         color = 'black'
         plt.text(j, i, round(matrix_diff[i][j], 2), ha='center', va='center', color=color)
 
-plt.savefig('./matrix_diff_values.png')
+plt.savefig(f'./{current_time}_matrix_diff_ewc_values.png')
+plt.close()
+
+# finetuningの行列をプロット
+plt.figure(figsize=(10, 10))
+plt.imshow(matrix_finetuning, cmap='hot', interpolation='nearest')
+plt.title('Finetuning')
+plt.colorbar()
+plt.xticks(range(10), [f'learn_{i}' for i in range(10)])
+plt.yticks(range(10), [f'forget_{i}' for i in range(10)])
+for i in range(10):
+    for j in range(10):
+        color = 'black' if matrix_finetuning[i][j] > 0.3 else 'white'
+        plt.text(j, i, round(matrix_finetuning[i][j], 2), ha='center', va='center', color=color)
+plt.savefig(f'./{current_time}_matrix_finetuning_values.png')
+plt.close()
+
+# SA Finetuningの行列をプロット
+plt.figure(figsize=(10, 10))
+plt.imshow(matrix_sa_finetuning, cmap='hot', interpolation='nearest')
+plt.title('SA Finetuning')
+plt.colorbar()
+plt.xticks(range(10), [f'learn_{i}' for i in range(10)])
+plt.yticks(range(10), [f'forget_{i}' for i in range(10)])
+for i in range(10):
+    for j in range(10):
+        color = 'black' if matrix_sa_finetuning[i][j] > 0.3 else 'white'
+        plt.text(j, i, round(matrix_sa_finetuning[i][j], 2), ha='center', va='center', color=color)
+plt.savefig(f'./{current_time}_matrix_sa_finetuning_values.png')
+plt.close()
+
+# Finetuning と SA Finetuning の行列の差分を計算
+matrix_diff_finetuning = np.array(matrix_sa_finetuning) - np.array(matrix_finetuning)
+max_abs_value_finetuning = np.max(np.abs(matrix_diff_finetuning))
+
+# 差分行列をプロット
+plt.figure(figsize=(10, 10))
+plt.imshow(matrix_diff_finetuning, cmap='RdBu', interpolation='nearest', vmin=-max_abs_value_finetuning*max_image_ratio, vmax=max_abs_value_finetuning*max_image_ratio)
+plt.title('Difference between SA Finetuning and Finetuning')
+plt.colorbar()
+plt.xticks(range(10), [f'learn_{i}' for i in range(10)])
+plt.yticks(range(10), [f'forget_{i}' for i in range(10)])
+for i in range(10):
+    for j in range(10):
+        color = 'black'
+        plt.text(j, i, round(matrix_diff_finetuning[i][j], 2), ha='center', va='center', color=color)
+
+plt.savefig(f'./{current_time}_matrix_diff_finetuning_values.png')
 plt.close()
