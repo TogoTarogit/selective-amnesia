@@ -19,7 +19,7 @@ result_dir_name=$(date "+%Y_%m_%d_%H%M%S")_mnist_forget_learn_test.txt
 # 実験の日付を表示
 echo "experiment date: $(date "+%Y/%m/%d %H:%M:%S")" | tee -a $result_dir_name
 # 実験の内容について記録
-echo "experiment content: " | tee -a $result_dir_name
+echo "experiment content: 忘却のさせ方を雑音ではなくランダムな画像に変更 分類精度に変更" | tee -a $result_dir_name
 # ファイルに変数の値を追記
 echo "CUDA Number: $cuda_num" >> $result_dir_name
 echo "Number of Samples: $n_samples" >> $result_dir_name
@@ -58,7 +58,7 @@ for learn in ${list_ewc_learn[@]}; do
                 # 分類機で精度を出す
 
                 results=$(
-                    CUDA_VISIBLE_DEVICES=$cuda_num python evaluate_with_classifier.py --sample_path $finetuning_save_dir --label_of_dropped_class $learn
+                    CUDA_VISIBLE_DEVICES=$cuda_num python evaluate_with_classification_accuracy.py --sample_path $finetuning_save_dir --label_of_dropped_class $learn
                     )
                 # 分類精度を記録する
                     echo "finetuning">>$result_dir_name
@@ -80,7 +80,7 @@ for learn in ${list_ewc_learn[@]}; do
                 CUDA_VISIBLE_DEVICES=$cuda_num python generate_samples.py --ckpt_folder $no_sa_ewc_save_dir --label_to_generate $learn --n_samples $n_samples
                 # 分類機で精度を出す
                 results=$(
-                    CUDA_VISIBLE_DEVICES=$cuda_num python evaluate_with_classifier.py --sample_path $no_sa_ewc_save_dir --label_of_dropped_class $learn
+                    CUDA_VISIBLE_DEVICES=$cuda_num python evaluate_with_classification_accuracy.py --sample_path $no_sa_ewc_save_dir --label_of_dropped_class $learn
                     )
                 # 分類精度を記録する
                     echo "nosa,ewc">>$result_dir_name
@@ -113,7 +113,7 @@ for learn in ${list_ewc_learn[@]}; do
                 CUDA_VISIBLE_DEVICES=$cuda_num python generate_samples.py --ckpt_folder $sa_finetuning_save_dir --label_to_generate $learn --n_samples $n_samples
                 # 分類機で精度を出す
                 results=$(
-                    CUDA_VISIBLE_DEVICES=$cuda_num python evaluate_with_classifier.py --sample_path $sa_finetuning_save_dir --label_of_dropped_class $learn
+                    CUDA_VISIBLE_DEVICES=$cuda_num python evaluate_with_classification_accuracy.py --sample_path $sa_finetuning_save_dir --label_of_dropped_class $learn
                     )
                 # 分類精度を記録する
                     echo "sa,finetuning">>$result_dir_name
@@ -137,7 +137,7 @@ for learn in ${list_ewc_learn[@]}; do
                 CUDA_VISIBLE_DEVICES=$cuda_num python generate_samples.py --ckpt_folder $sa_ewc_save_dir --label_to_generate $learn --n_samples $n_samples
                 # 分類機で精度を出す
                 results=$(
-                    CUDA_VISIBLE_DEVICES=$cuda_num python evaluate_with_classifier.py --sample_path $sa_ewc_save_dir --label_of_dropped_class $learn
+                    CUDA_VISIBLE_DEVICES=$cuda_num python evaluate_with_classification_accuracy.py --sample_path $sa_ewc_save_dir --label_of_dropped_class $learn
                     )
                 # 分類精度を記録する
                     echo "sa,ewc">>$result_dir_name
