@@ -3,8 +3,8 @@
 # GPU監視スクリプト（CSV形式、複数GPU対応）
 
 # ログファイルのパスを設定
-LOG_FILE="./gpu_usage_log.csv"
-GRAPH_FILE="./gpu_usage_graph.png"
+LOG_FILE="./gpu_memory_usage_log.csv"
+GRAPH_FILE="./gpu_memory_usage_graph.png"
 
 # 監視間隔（秒）
 INTERVAL=60
@@ -15,16 +15,19 @@ GRAPH_UPDATE_INTERVAL=3600
 # GPUの数を取得
 NUM_GPUS=$(nvidia-smi --query-gpu=index --format=csv,noheader | wc -l)
 
-# CSVヘッダーを設定
-echo -n "timestamp," >> $LOG_FILE
-for ((i=0; i<NUM_GPUS; i++))
-do
-    echo -n "GPU$i" >> $LOG_FILE
-    if [ $i -lt $((NUM_GPUS-1)) ]; then
-        echo -n "," >> $LOG_FILE
-    fi
-done
-echo "" >> $LOG_FILE
+# 既にログファイルが存在するかチェック
+if [ ! -f "$LOG_FILE" ]; then
+    # CSVヘッダーを設定
+    echo -n "timestamp," > $LOG_FILE
+    for ((i=0; i<NUM_GPUS; i++))
+    do
+        echo -n "GPU${i}_util,GPU${i}_mem_util" >> $LOG_FILE
+        if [ $i -lt $((NUM_GPUS-1)) ]; then
+            echo -n "," >> $LOG_FILE
+        fi
+    done
+    echo "" >> $LOG_FILE
+fi
 
 # ログ記録の無限ループ
 while true
@@ -35,16 +38,27 @@ do
     # ログデータを準備
     LOG_DATA="$TIMESTAMP"
 
-    # 各GPUの使用率を一時ファイルに保存
+   # 各GPUの使用率とメモリ使用率を一時ファイルに保存
     TEMP_FILE=$(mktemp)
-    nvidia-smi --query-gpu=index,utilization.gpu --format=csv,noheader,nounits > "$TEMP_FILE"
+    nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader,nounits > "$TEMP_FILE"
 
-    # 一時ファイルを読み込んでログデータに追加
+    # デバッグ: 取得したデータを出力
+    # echo "取得したGPU情報:"
+    # cat "$TEMP_FILE"
+
+    # 一時ファイルを読み込んでログデータにGPU使用率およびメモリ使用率を追加
     while read -r line
     do
-        GPU_USAGE=$(echo $line | cut -d, -f2 | xargs)  # xargsは余分な空白を削除するために使用
-        LOG_DATA="$LOG_DATA,$GPU_USAGE"
+        IFS=',' read -r gpu_index gpu_util gpu_mem_used gpu_mem_total <<< "$line"
+        mem_util=$(echo "scale=0; ($gpu_mem_used/$gpu_mem_total)*100/1" | bc) # 小数を削除して整数に
+
+        # デバッグ: GPU利用率と計算されたメモリ使用率を出力
+        # echo "GPU${gpu_index} - メモリ使用量: ${gpu_mem_used} , : メモリ最大容量${gpu_mem_total}"
+        # echo "GPU${gpu_index} - GPU利用率: ${gpu_util}% , メモリ使用率: ${mem_util}%"
+
+        LOG_DATA="$LOG_DATA,$gpu_util,$mem_util"
     done < "$TEMP_FILE"
+
     rm "$TEMP_FILE"  # 一時ファイルを削除
 
     # ログデータをファイルに書き込み
