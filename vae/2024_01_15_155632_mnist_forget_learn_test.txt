@@ -1,0 +1,2004 @@
+experiment date: 2024/01/15 15:56:32
+experiment content: 忘却のさせ方を雑音ではなくランダムな画像に変更（2回目）
+CUDA Number: 1
+Number of Samples: 10000
+finetuning
+forget: 0, learn: 0
+./results/mnist/2024_01_15_163149/0_samples
+Average entropy: 1.1611762875691056
+Average prob of forgotten class: 0.04243444367239135
+nosa,ewc
+forget: 0, learn: 0
+./results/mnist/2024_01_15_163558/0_samples
+Average entropy: 1.1496837406884879
+Average prob of forgotten class: 0.042820268354262225
+sa,finetuning
+forget: 0, learn: 0
+./results/mnist/2024_01_15_164139/0_samples
+Average entropy: 1.3021298393141478
+Average prob of forgotten class: 0.06458707346610026
+sa,ewc
+forget: 0, learn: 0
+./results/mnist/2024_01_15_164934/0_samples
+Average entropy: 1.4327179889660329
+Average prob of forgotten class: 0.06307171238586307
+finetuning
+forget: 1, learn: 0
+./results/mnist/2024_01_15_165357/0_samples
+Average entropy: 0.7535773775307462
+Average prob of forgotten class: 0.507058632094413
+nosa,ewc
+forget: 1, learn: 0
+./results/mnist/2024_01_15_165759/0_samples
+Average entropy: 1.0044501580996439
+Average prob of forgotten class: 0.26327980670612305
+sa,finetuning
+forget: 1, learn: 0
+./results/mnist/2024_01_15_170344/0_samples
+Average entropy: 0.7162021429976448
+Average prob of forgotten class: 0.5352119555464014
+sa,ewc
+forget: 1, learn: 0
+./results/mnist/2024_01_15_171057/0_samples
+Average entropy: 0.9150454108603299
+Average prob of forgotten class: 0.3703356821788475
+finetuning
+forget: 2, learn: 0
+./results/mnist/2024_01_15_171520/0_samples
+Average entropy: 0.7383917128317989
+Average prob of forgotten class: 0.5179717601276934
+nosa,ewc
+forget: 2, learn: 0
+./results/mnist/2024_01_15_171929/0_samples
+Average entropy: 1.0117161984089762
+Average prob of forgotten class: 0.25714387698099017
+sa,finetuning
+forget: 2, learn: 0
+./results/mnist/2024_01_15_172501/0_samples
+Average entropy: 0.719940651091747
+Average prob of forgotten class: 0.5340994989965111
+sa,ewc
+forget: 2, learn: 0
+./results/mnist/2024_01_15_173158/0_samples
+Average entropy: 0.9155912349233404
+Average prob of forgotten class: 0.3660884411074221
+finetuning
+forget: 3, learn: 0
+./results/mnist/2024_01_15_173613/0_samples
+Average entropy: 0.7390176719636656
+Average prob of forgotten class: 0.5248876616824418
+nosa,ewc
+forget: 3, learn: 0
+./results/mnist/2024_01_15_174010/0_samples
+Average entropy: 1.0044785068603233
+Average prob of forgotten class: 0.25749891344457865
+sa,finetuning
+forget: 3, learn: 0
+./results/mnist/2024_01_15_174544/0_samples
+Average entropy: 0.7268123003887013
+Average prob of forgotten class: 0.5446325866505504
+sa,ewc
+forget: 3, learn: 0
+./results/mnist/2024_01_15_175236/0_samples
+Average entropy: 0.9322554941754788
+Average prob of forgotten class: 0.3756057156715542
+finetuning
+forget: 4, learn: 0
+./results/mnist/2024_01_15_175652/0_samples
+Average entropy: 0.738806486595422
+Average prob of forgotten class: 0.5140449445461854
+nosa,ewc
+forget: 4, learn: 0
+./results/mnist/2024_01_15_180054/0_samples
+Average entropy: 1.0062480715569109
+Average prob of forgotten class: 0.25709980411920696
+sa,finetuning
+forget: 4, learn: 0
+./results/mnist/2024_01_15_180629/0_samples
+Average entropy: 0.7310726174619049
+Average prob of forgotten class: 0.5218451040564105
+sa,ewc
+forget: 4, learn: 0
+./results/mnist/2024_01_15_181322/0_samples
+Average entropy: 0.9107695815619081
+Average prob of forgotten class: 0.3685062600998208
+finetuning
+forget: 5, learn: 0
+./results/mnist/2024_01_15_181741/0_samples
+Average entropy: 0.7430656830547377
+Average prob of forgotten class: 0.5155874543706886
+nosa,ewc
+forget: 5, learn: 0
+./results/mnist/2024_01_15_182142/0_samples
+Average entropy: 1.0214133695699275
+Average prob of forgotten class: 0.24598102080926765
+sa,finetuning
+forget: 5, learn: 0
+./results/mnist/2024_01_15_182712/0_samples
+Average entropy: 0.7198350040707737
+Average prob of forgotten class: 0.5355755852069706
+sa,ewc
+forget: 5, learn: 0
+./results/mnist/2024_01_15_183400/0_samples
+Average entropy: 0.9111662552459165
+Average prob of forgotten class: 0.35991230024956167
+finetuning
+forget: 6, learn: 0
+./results/mnist/2024_01_15_183819/0_samples
+Average entropy: 0.7192841439973563
+Average prob of forgotten class: 0.5361079644644633
+nosa,ewc
+forget: 6, learn: 0
+./results/mnist/2024_01_15_184219/0_samples
+Average entropy: 0.9962216048734263
+Average prob of forgotten class: 0.2817196272080764
+sa,finetuning
+forget: 6, learn: 0
+./results/mnist/2024_01_15_184749/0_samples
+Average entropy: 0.7164822139311582
+Average prob of forgotten class: 0.5294176046736538
+sa,ewc
+forget: 6, learn: 0
+./results/mnist/2024_01_15_185439/0_samples
+Average entropy: 0.9062304636463523
+Average prob of forgotten class: 0.3689158001798205
+finetuning
+forget: 7, learn: 0
+./results/mnist/2024_01_15_185859/0_samples
+Average entropy: 0.7272665087366477
+Average prob of forgotten class: 0.5326453272718936
+nosa,ewc
+forget: 7, learn: 0
+./results/mnist/2024_01_15_190300/0_samples
+Average entropy: 1.0069159142440185
+Average prob of forgotten class: 0.26937146350974217
+sa,finetuning
+forget: 7, learn: 0
+./results/mnist/2024_01_15_190834/0_samples
+Average entropy: 0.7170017585158348
+Average prob of forgotten class: 0.5629792082472704
+sa,ewc
+forget: 7, learn: 0
+./results/mnist/2024_01_15_191532/0_samples
+Average entropy: 0.9254697195719928
+Average prob of forgotten class: 0.3961409227340482
+finetuning
+forget: 8, learn: 0
+./results/mnist/2024_01_15_191948/0_samples
+Average entropy: 0.7412841585464776
+Average prob of forgotten class: 0.5171950093936175
+nosa,ewc
+forget: 8, learn: 0
+./results/mnist/2024_01_15_192348/0_samples
+Average entropy: 1.014867470599711
+Average prob of forgotten class: 0.25868375366553664
+sa,finetuning
+forget: 8, learn: 0
+./results/mnist/2024_01_15_192916/0_samples
+Average entropy: 0.717657936969772
+Average prob of forgotten class: 0.5357313717249781
+sa,ewc
+forget: 8, learn: 0
+./results/mnist/2024_01_15_193604/0_samples
+Average entropy: 0.917147749569267
+Average prob of forgotten class: 0.3632525802240707
+finetuning
+forget: 9, learn: 0
+./results/mnist/2024_01_15_194019/0_samples
+Average entropy: 0.731996716465801
+Average prob of forgotten class: 0.5223221008200198
+nosa,ewc
+forget: 9, learn: 0
+./results/mnist/2024_01_15_194415/0_samples
+Average entropy: 1.0044050606666133
+Average prob of forgotten class: 0.25482427881797776
+sa,finetuning
+forget: 9, learn: 0
+./results/mnist/2024_01_15_194946/0_samples
+Average entropy: 0.7212531416444108
+Average prob of forgotten class: 0.5450004311278462
+sa,ewc
+forget: 9, learn: 0
+./results/mnist/2024_01_15_195636/0_samples
+Average entropy: 0.925659250933677
+Average prob of forgotten class: 0.37801693589426577
+finetuning
+forget: 0, learn: 1
+./results/mnist/2024_01_15_203540/1_samples
+Average entropy: 0.98608326993417
+Average prob of forgotten class: 0.3618344060378149
+nosa,ewc
+forget: 0, learn: 1
+./results/mnist/2024_01_15_203939/1_samples
+Average entropy: 1.1660736540798098
+Average prob of forgotten class: 0.16692268673796207
+sa,finetuning
+forget: 0, learn: 1
+./results/mnist/2024_01_15_204516/1_samples
+Average entropy: 0.9688427994260564
+Average prob of forgotten class: 0.3915700460784137
+sa,ewc
+forget: 0, learn: 1
+./results/mnist/2024_01_15_205206/1_samples
+Average entropy: 1.1328621732536703
+Average prob of forgotten class: 0.22098010222543962
+finetuning
+forget: 1, learn: 1
+./results/mnist/2024_01_15_205622/1_samples
+Average entropy: 1.2235089204041287
+Average prob of forgotten class: 0.07903678085131105
+nosa,ewc
+forget: 1, learn: 1
+./results/mnist/2024_01_15_210020/1_samples
+Average entropy: 1.2325938708381727
+Average prob of forgotten class: 0.08091582830820698
+sa,finetuning
+forget: 1, learn: 1
+./results/mnist/2024_01_15_210550/1_samples
+Average entropy: 1.385010169353336
+Average prob of forgotten class: 0.08616665559384273
+sa,ewc
+forget: 1, learn: 1
+./results/mnist/2024_01_15_211237/1_samples
+Average entropy: 1.4694018657319248
+Average prob of forgotten class: 0.08614116079115774
+finetuning
+forget: 2, learn: 1
+./results/mnist/2024_01_15_211657/1_samples
+Average entropy: 0.974743929808028
+Average prob of forgotten class: 0.3825501705869101
+nosa,ewc
+forget: 2, learn: 1
+./results/mnist/2024_01_15_212055/1_samples
+Average entropy: 1.155455389758572
+Average prob of forgotten class: 0.17948574252659455
+sa,finetuning
+forget: 2, learn: 1
+./results/mnist/2024_01_15_212627/1_samples
+Average entropy: 0.959891754668206
+Average prob of forgotten class: 0.41289002692792565
+sa,ewc
+forget: 2, learn: 1
+./results/mnist/2024_01_15_213312/1_samples
+Average entropy: 1.137141101527959
+Average prob of forgotten class: 0.22231199967791326
+finetuning
+forget: 3, learn: 1
+./results/mnist/2024_01_15_213727/1_samples
+Average entropy: 0.9703831502702087
+Average prob of forgotten class: 0.37675846845377237
+nosa,ewc
+forget: 3, learn: 1
+./results/mnist/2024_01_15_214129/1_samples
+Average entropy: 1.156014621257782
+Average prob of forgotten class: 0.17160071057151072
+sa,finetuning
+forget: 3, learn: 1
+./results/mnist/2024_01_15_214658/1_samples
+Average entropy: 0.9745941075962037
+Average prob of forgotten class: 0.40373229095712304
+sa,ewc
+forget: 3, learn: 1
+./results/mnist/2024_01_15_215336/1_samples
+Average entropy: 1.1416463524801657
+Average prob of forgotten class: 0.23109497490804642
+finetuning
+forget: 4, learn: 1
+./results/mnist/2024_01_15_215748/1_samples
+Average entropy: 0.9818991533247754
+Average prob of forgotten class: 0.36828348541166633
+nosa,ewc
+forget: 4, learn: 1
+./results/mnist/2024_01_15_220146/1_samples
+Average entropy: 1.1532705184072256
+Average prob of forgotten class: 0.17653551284456626
+sa,finetuning
+forget: 4, learn: 1
+./results/mnist/2024_01_15_220716/1_samples
+Average entropy: 0.987986437510699
+Average prob of forgotten class: 0.3889839091571048
+sa,ewc
+forget: 4, learn: 1
+./results/mnist/2024_01_15_221349/1_samples
+Average entropy: 1.1339671292807907
+Average prob of forgotten class: 0.20739336358383298
+finetuning
+forget: 5, learn: 1
+./results/mnist/2024_01_15_221806/1_samples
+Average entropy: 0.9785168744856492
+Average prob of forgotten class: 0.3736067460849881
+nosa,ewc
+forget: 5, learn: 1
+./results/mnist/2024_01_15_222203/1_samples
+Average entropy: 1.1709378184750676
+Average prob of forgotten class: 0.16723043221281841
+sa,finetuning
+forget: 5, learn: 1
+./results/mnist/2024_01_15_222733/1_samples
+Average entropy: 0.9645247157895938
+Average prob of forgotten class: 0.40300007071346045
+sa,ewc
+forget: 5, learn: 1
+./results/mnist/2024_01_15_223408/1_samples
+Average entropy: 1.149426136747934
+Average prob of forgotten class: 0.21830861910711974
+finetuning
+forget: 6, learn: 1
+./results/mnist/2024_01_15_223829/1_samples
+Average entropy: 0.9977298537269235
+Average prob of forgotten class: 0.3605006886064075
+nosa,ewc
+forget: 6, learn: 1
+./results/mnist/2024_01_15_224228/1_samples
+Average entropy: 1.1599840103881434
+Average prob of forgotten class: 0.17022696699132212
+sa,finetuning
+forget: 6, learn: 1
+./results/mnist/2024_01_15_224800/1_samples
+Average entropy: 0.9676719539565966
+Average prob of forgotten class: 0.4160614783759229
+sa,ewc
+forget: 6, learn: 1
+./results/mnist/2024_01_15_225429/1_samples
+Average entropy: 1.1302481023594737
+Average prob of forgotten class: 0.22524151325342245
+finetuning
+forget: 7, learn: 1
+./results/mnist/2024_01_15_225851/1_samples
+Average entropy: 0.9711031029000878
+Average prob of forgotten class: 0.38277274958090857
+nosa,ewc
+forget: 7, learn: 1
+./results/mnist/2024_01_15_230253/1_samples
+Average entropy: 1.155467183678411
+Average prob of forgotten class: 0.17106400127522647
+sa,finetuning
+forget: 7, learn: 1
+./results/mnist/2024_01_15_230825/1_samples
+Average entropy: 0.974629033007659
+Average prob of forgotten class: 0.4011664598947391
+sa,ewc
+forget: 7, learn: 1
+./results/mnist/2024_01_15_231454/1_samples
+Average entropy: 1.14025924121961
+Average prob of forgotten class: 0.2236917439440731
+finetuning
+forget: 8, learn: 1
+./results/mnist/2024_01_15_231906/1_samples
+Average entropy: 0.969532257411629
+Average prob of forgotten class: 0.37337021774146706
+nosa,ewc
+forget: 8, learn: 1
+./results/mnist/2024_01_15_232302/1_samples
+Average entropy: 1.1585418708855286
+Average prob of forgotten class: 0.17066963901743293
+sa,finetuning
+forget: 8, learn: 1
+./results/mnist/2024_01_15_232834/1_samples
+Average entropy: 0.9575366893550381
+Average prob of forgotten class: 0.4024309493252076
+sa,ewc
+forget: 8, learn: 1
+./results/mnist/2024_01_15_233501/1_samples
+Average entropy: 1.1409999678144231
+Average prob of forgotten class: 0.22442167100962251
+finetuning
+forget: 9, learn: 1
+./results/mnist/2024_01_15_233913/1_samples
+Average entropy: 0.9957574284635484
+Average prob of forgotten class: 0.35754383623134345
+nosa,ewc
+forget: 9, learn: 1
+./results/mnist/2024_01_15_234311/1_samples
+Average entropy: 1.1545783707406372
+Average prob of forgotten class: 0.16845239634858444
+sa,finetuning
+forget: 9, learn: 1
+./results/mnist/2024_01_15_234838/1_samples
+Average entropy: 0.9887728254543617
+Average prob of forgotten class: 0.38638988591264933
+sa,ewc
+forget: 9, learn: 1
+./results/mnist/2024_01_15_235512/1_samples
+Average entropy: 1.1561280696187168
+Average prob of forgotten class: 0.20776357682188973
+finetuning
+forget: 0, learn: 2
+./results/mnist/2024_01_16_003356/2_samples
+Average entropy: 0.9161896037403494
+Average prob of forgotten class: 0.35304863267811015
+nosa,ewc
+forget: 0, learn: 2
+./results/mnist/2024_01_16_003753/2_samples
+Average entropy: 1.075663538533263
+Average prob of forgotten class: 0.211026938050054
+sa,finetuning
+forget: 0, learn: 2
+./results/mnist/2024_01_16_004322/2_samples
+Average entropy: 0.8994254148565233
+Average prob of forgotten class: 0.3786279333871789
+sa,ewc
+forget: 0, learn: 2
+./results/mnist/2024_01_16_004959/2_samples
+Average entropy: 1.0227698773378506
+Average prob of forgotten class: 0.2718750892963726
+finetuning
+forget: 1, learn: 2
+./results/mnist/2024_01_16_005411/2_samples
+Average entropy: 0.9113144184229895
+Average prob of forgotten class: 0.3570650769979693
+nosa,ewc
+forget: 1, learn: 2
+./results/mnist/2024_01_16_005811/2_samples
+Average entropy: 1.0750592846889049
+Average prob of forgotten class: 0.21250014574616216
+sa,finetuning
+forget: 1, learn: 2
+./results/mnist/2024_01_16_010342/2_samples
+Average entropy: 0.9146614648634568
+Average prob of forgotten class: 0.372785986517556
+sa,ewc
+forget: 1, learn: 2
+./results/mnist/2024_01_16_011023/2_samples
+Average entropy: 1.0048079518601298
+Average prob of forgotten class: 0.27206526295049116
+finetuning
+forget: 2, learn: 2
+./results/mnist/2024_01_16_011440/2_samples
+Average entropy: 1.1381092481315136
+Average prob of forgotten class: 0.03675195348478155
+nosa,ewc
+forget: 2, learn: 2
+./results/mnist/2024_01_16_011842/2_samples
+Average entropy: 1.1226868245285004
+Average prob of forgotten class: 0.03581442501672427
+sa,finetuning
+forget: 2, learn: 2
+./results/mnist/2024_01_16_012411/2_samples
+Average entropy: 1.2851543424185365
+Average prob of forgotten class: 0.06040055787161691
+sa,ewc
+forget: 2, learn: 2
+./results/mnist/2024_01_16_013048/2_samples
+Average entropy: 1.3980691055767238
+Average prob of forgotten class: 0.06545778088911902
+finetuning
+forget: 3, learn: 2
+./results/mnist/2024_01_16_013505/2_samples
+Average entropy: 0.9142558242892846
+Average prob of forgotten class: 0.367934615642298
+nosa,ewc
+forget: 3, learn: 2
+./results/mnist/2024_01_16_013905/2_samples
+Average entropy: 1.0827842529397458
+Average prob of forgotten class: 0.2144835109647829
+sa,finetuning
+forget: 3, learn: 2
+./results/mnist/2024_01_16_014436/2_samples
+Average entropy: 0.9088863565120846
+Average prob of forgotten class: 0.3938275462714955
+sa,ewc
+forget: 3, learn: 2
+./results/mnist/2024_01_16_015109/2_samples
+Average entropy: 1.0179717573337257
+Average prob of forgotten class: 0.2859840614546556
+finetuning
+forget: 4, learn: 2
+./results/mnist/2024_01_16_015524/2_samples
+Average entropy: 0.9049039052333683
+Average prob of forgotten class: 0.3567547963466495
+nosa,ewc
+forget: 4, learn: 2
+./results/mnist/2024_01_16_015922/2_samples
+Average entropy: 1.0827926537021995
+Average prob of forgotten class: 0.2096298106625909
+sa,finetuning
+forget: 4, learn: 2
+./results/mnist/2024_01_16_020458/2_samples
+Average entropy: 0.9164529668632895
+Average prob of forgotten class: 0.37675376393599436
+sa,ewc
+forget: 4, learn: 2
+./results/mnist/2024_01_16_021121/2_samples
+Average entropy: 1.030805300688371
+Average prob of forgotten class: 0.2762927018047776
+finetuning
+forget: 5, learn: 2
+./results/mnist/2024_01_16_021537/2_samples
+Average entropy: 0.9311440618475899
+Average prob of forgotten class: 0.35282670776359737
+nosa,ewc
+forget: 5, learn: 2
+./results/mnist/2024_01_16_021937/2_samples
+Average entropy: 1.085921747959219
+Average prob of forgotten class: 0.19923199899494648
+sa,finetuning
+forget: 5, learn: 2
+./results/mnist/2024_01_16_022508/2_samples
+Average entropy: 0.9332622960209846
+Average prob of forgotten class: 0.366622440633364
+sa,ewc
+forget: 5, learn: 2
+./results/mnist/2024_01_16_023121/2_samples
+Average entropy: 1.0317454932956025
+Average prob of forgotten class: 0.2650741852703504
+finetuning
+forget: 6, learn: 2
+./results/mnist/2024_01_16_023539/2_samples
+Average entropy: 0.9179655180778354
+Average prob of forgotten class: 0.36054012333624996
+nosa,ewc
+forget: 6, learn: 2
+./results/mnist/2024_01_16_023942/2_samples
+Average entropy: 1.0783841334050521
+Average prob of forgotten class: 0.20545220805797726
+sa,finetuning
+forget: 6, learn: 2
+./results/mnist/2024_01_16_024514/2_samples
+Average entropy: 0.9096298633376136
+Average prob of forgotten class: 0.38034132623579353
+sa,ewc
+forget: 6, learn: 2
+./results/mnist/2024_01_16_025123/2_samples
+Average entropy: 0.9994701381074265
+Average prob of forgotten class: 0.27259987842990085
+finetuning
+forget: 7, learn: 2
+./results/mnist/2024_01_16_025538/2_samples
+Average entropy: 0.9053045990876853
+Average prob of forgotten class: 0.36263887642417103
+nosa,ewc
+forget: 7, learn: 2
+./results/mnist/2024_01_16_025934/2_samples
+Average entropy: 1.0809954847209156
+Average prob of forgotten class: 0.20970669441157952
+sa,finetuning
+forget: 7, learn: 2
+./results/mnist/2024_01_16_030504/2_samples
+Average entropy: 0.9244854435091838
+Average prob of forgotten class: 0.3869541136082262
+sa,ewc
+forget: 7, learn: 2
+./results/mnist/2024_01_16_031113/2_samples
+Average entropy: 1.0326636510435492
+Average prob of forgotten class: 0.28429851826513186
+finetuning
+forget: 8, learn: 2
+./results/mnist/2024_01_16_031528/2_samples
+Average entropy: 0.8949326553847641
+Average prob of forgotten class: 0.3720901508932002
+nosa,ewc
+forget: 8, learn: 2
+./results/mnist/2024_01_16_031925/2_samples
+Average entropy: 1.0743772940477356
+Average prob of forgotten class: 0.2208389616716886
+sa,finetuning
+forget: 8, learn: 2
+./results/mnist/2024_01_16_032453/2_samples
+Average entropy: 0.8957780849887058
+Average prob of forgotten class: 0.3917690960224718
+sa,ewc
+forget: 8, learn: 2
+./results/mnist/2024_01_16_033056/2_samples
+Average entropy: 1.03042783041019
+Average prob of forgotten class: 0.27432290534488857
+finetuning
+forget: 9, learn: 2
+./results/mnist/2024_01_16_033507/2_samples
+Average entropy: 0.922991210129112
+Average prob of forgotten class: 0.3507073611544911
+nosa,ewc
+forget: 9, learn: 2
+./results/mnist/2024_01_16_033902/2_samples
+Average entropy: 1.079893468762748
+Average prob of forgotten class: 0.2034245725371875
+sa,finetuning
+forget: 9, learn: 2
+./results/mnist/2024_01_16_034435/2_samples
+Average entropy: 0.9274929293897003
+Average prob of forgotten class: 0.3780792320612818
+sa,ewc
+forget: 9, learn: 2
+./results/mnist/2024_01_16_035031/2_samples
+Average entropy: 1.0339432441396639
+Average prob of forgotten class: 0.27727080637123436
+finetuning
+forget: 0, learn: 3
+./results/mnist/2024_01_16_042845/3_samples
+Average entropy: 0.833445271011442
+Average prob of forgotten class: 0.44422639458207414
+nosa,ewc
+forget: 0, learn: 3
+./results/mnist/2024_01_16_043241/3_samples
+Average entropy: 0.9891338887391612
+Average prob of forgotten class: 0.2837285409332253
+sa,finetuning
+forget: 0, learn: 3
+./results/mnist/2024_01_16_043808/3_samples
+Average entropy: 0.8217807911569253
+Average prob of forgotten class: 0.4618315013940446
+sa,ewc
+forget: 0, learn: 3
+./results/mnist/2024_01_16_044407/3_samples
+Average entropy: 0.9182995762676001
+Average prob of forgotten class: 0.35989782388787717
+finetuning
+forget: 1, learn: 3
+./results/mnist/2024_01_16_044825/3_samples
+Average entropy: 0.8406121890293434
+Average prob of forgotten class: 0.44088605768047273
+nosa,ewc
+forget: 1, learn: 3
+./results/mnist/2024_01_16_045222/3_samples
+Average entropy: 1.0108979473588988
+Average prob of forgotten class: 0.26833429059479386
+sa,finetuning
+forget: 1, learn: 3
+./results/mnist/2024_01_16_045756/3_samples
+Average entropy: 0.8318144582444802
+Average prob of forgotten class: 0.4718184386147186
+sa,ewc
+forget: 1, learn: 3
+./results/mnist/2024_01_16_050351/3_samples
+Average entropy: 0.9279365608235821
+Average prob of forgotten class: 0.37231926806271076
+finetuning
+forget: 2, learn: 3
+./results/mnist/2024_01_16_050804/3_samples
+Average entropy: 0.8126973970793188
+Average prob of forgotten class: 0.46003026445396245
+nosa,ewc
+forget: 2, learn: 3
+./results/mnist/2024_01_16_051201/3_samples
+Average entropy: 1.0021039819112048
+Average prob of forgotten class: 0.28363079053815454
+sa,finetuning
+forget: 2, learn: 3
+./results/mnist/2024_01_16_051731/3_samples
+Average entropy: 0.8166840806370601
+Average prob of forgotten class: 0.4786790658836253
+sa,ewc
+forget: 2, learn: 3
+./results/mnist/2024_01_16_052333/3_samples
+Average entropy: 0.9210578026250005
+Average prob of forgotten class: 0.381596025894396
+finetuning
+forget: 3, learn: 3
+./results/mnist/2024_01_16_052751/3_samples
+Average entropy: 1.1267628315836191
+Average prob of forgotten class: 0.04322776031040121
+nosa,ewc
+forget: 3, learn: 3
+./results/mnist/2024_01_16_053142/3_samples
+Average entropy: 1.1241127805551514
+Average prob of forgotten class: 0.042144211398408515
+sa,finetuning
+forget: 3, learn: 3
+./results/mnist/2024_01_16_053715/3_samples
+Average entropy: 1.3310704622417688
+Average prob of forgotten class: 0.04728501231147675
+sa,ewc
+forget: 3, learn: 3
+./results/mnist/2024_01_16_054316/3_samples
+Average entropy: 1.4275173747446388
+Average prob of forgotten class: 0.05251695784681942
+finetuning
+forget: 4, learn: 3
+./results/mnist/2024_01_16_054731/3_samples
+Average entropy: 0.8308672030689195
+Average prob of forgotten class: 0.4421245649573393
+nosa,ewc
+forget: 4, learn: 3
+./results/mnist/2024_01_16_055127/3_samples
+Average entropy: 1.0133359491592273
+Average prob of forgotten class: 0.2683694400766399
+sa,finetuning
+forget: 4, learn: 3
+./results/mnist/2024_01_16_055654/3_samples
+Average entropy: 0.8317334104795009
+Average prob of forgotten class: 0.4561676363227889
+sa,ewc
+forget: 4, learn: 3
+./results/mnist/2024_01_16_060252/3_samples
+Average entropy: 0.9269041635561734
+Average prob of forgotten class: 0.36293777253013104
+finetuning
+forget: 5, learn: 3
+./results/mnist/2024_01_16_060708/3_samples
+Average entropy: 0.8413475565612316
+Average prob of forgotten class: 0.4481647295760922
+nosa,ewc
+forget: 5, learn: 3
+./results/mnist/2024_01_16_061106/3_samples
+Average entropy: 1.0020418183412403
+Average prob of forgotten class: 0.2892194533487782
+sa,finetuning
+forget: 5, learn: 3
+./results/mnist/2024_01_16_061638/3_samples
+Average entropy: 0.8088560356991366
+Average prob of forgotten class: 0.48407755489461124
+sa,ewc
+forget: 5, learn: 3
+./results/mnist/2024_01_16_062234/3_samples
+Average entropy: 0.9194778762757778
+Average prob of forgotten class: 0.36963106505572796
+finetuning
+forget: 6, learn: 3
+./results/mnist/2024_01_16_062652/3_samples
+Average entropy: 0.8261275462573394
+Average prob of forgotten class: 0.45100199221633375
+nosa,ewc
+forget: 6, learn: 3
+./results/mnist/2024_01_16_063047/3_samples
+Average entropy: 0.9979999936185777
+Average prob of forgotten class: 0.282070318935439
+sa,finetuning
+forget: 6, learn: 3
+./results/mnist/2024_01_16_063618/3_samples
+Average entropy: 0.8146090680966154
+Average prob of forgotten class: 0.476820710755419
+sa,ewc
+forget: 6, learn: 3
+./results/mnist/2024_01_16_064214/3_samples
+Average entropy: 0.9098756616003811
+Average prob of forgotten class: 0.3626759875915013
+finetuning
+forget: 7, learn: 3
+./results/mnist/2024_01_16_064632/3_samples
+Average entropy: 0.8303631669841707
+Average prob of forgotten class: 0.4480677928077057
+nosa,ewc
+forget: 7, learn: 3
+./results/mnist/2024_01_16_065034/3_samples
+Average entropy: 0.9872673458885401
+Average prob of forgotten class: 0.29000813647871837
+sa,finetuning
+forget: 7, learn: 3
+./results/mnist/2024_01_16_065608/3_samples
+Average entropy: 0.8107772751245648
+Average prob of forgotten class: 0.486918740614783
+sa,ewc
+forget: 7, learn: 3
+./results/mnist/2024_01_16_070204/3_samples
+Average entropy: 0.9159748730016872
+Average prob of forgotten class: 0.38475021050544456
+finetuning
+forget: 8, learn: 3
+./results/mnist/2024_01_16_070620/3_samples
+Average entropy: 0.8260802577715367
+Average prob of forgotten class: 0.4567464800202288
+nosa,ewc
+forget: 8, learn: 3
+./results/mnist/2024_01_16_071015/3_samples
+Average entropy: 0.9948892034590244
+Average prob of forgotten class: 0.2841141668614
+sa,finetuning
+forget: 8, learn: 3
+./results/mnist/2024_01_16_071542/3_samples
+Average entropy: 0.8122376867104322
+Average prob of forgotten class: 0.47590025659883395
+sa,ewc
+forget: 8, learn: 3
+./results/mnist/2024_01_16_072138/3_samples
+Average entropy: 0.9325354925822467
+Average prob of forgotten class: 0.3576730993227102
+finetuning
+forget: 9, learn: 3
+./results/mnist/2024_01_16_072553/3_samples
+Average entropy: 0.8333444418385625
+Average prob of forgotten class: 0.454688714875374
+nosa,ewc
+forget: 9, learn: 3
+./results/mnist/2024_01_16_072951/3_samples
+Average entropy: 1.0033025824232027
+Average prob of forgotten class: 0.28685267354012467
+sa,finetuning
+forget: 9, learn: 3
+./results/mnist/2024_01_16_073530/3_samples
+Average entropy: 0.8140443447045982
+Average prob of forgotten class: 0.4837738396599889
+sa,ewc
+forget: 9, learn: 3
+./results/mnist/2024_01_16_074147/3_samples
+Average entropy: 0.9229355679126456
+Average prob of forgotten class: 0.376025345234666
+finetuning
+forget: 0, learn: 4
+./results/mnist/2024_01_16_081925/4_samples
+Average entropy: 0.5869243696215563
+Average prob of forgotten class: 0.7144261277280748
+nosa,ewc
+forget: 0, learn: 4
+./results/mnist/2024_01_16_082322/4_samples
+Average entropy: 0.916187004186213
+Average prob of forgotten class: 0.44945309311151505
+sa,finetuning
+forget: 0, learn: 4
+./results/mnist/2024_01_16_082855/4_samples
+Average entropy: 0.5346210414427333
+Average prob of forgotten class: 0.7561007107142359
+sa,ewc
+forget: 0, learn: 4
+./results/mnist/2024_01_16_083504/4_samples
+Average entropy: 0.7597071111667901
+Average prob of forgotten class: 0.5939708657097071
+finetuning
+forget: 1, learn: 4
+./results/mnist/2024_01_16_083917/4_samples
+Average entropy: 0.5887817842885852
+Average prob of forgotten class: 0.7154809853527695
+nosa,ewc
+forget: 1, learn: 4
+./results/mnist/2024_01_16_084315/4_samples
+Average entropy: 0.9000047928420827
+Average prob of forgotten class: 0.46069000725401565
+sa,finetuning
+forget: 1, learn: 4
+./results/mnist/2024_01_16_084840/4_samples
+Average entropy: 0.5304764648899436
+Average prob of forgotten class: 0.7546977114398032
+sa,ewc
+forget: 1, learn: 4
+./results/mnist/2024_01_16_085443/4_samples
+Average entropy: 0.7549907573265955
+Average prob of forgotten class: 0.6008370144991204
+finetuning
+forget: 2, learn: 4
+./results/mnist/2024_01_16_085857/4_samples
+Average entropy: 0.5653124412638135
+Average prob of forgotten class: 0.7283794415416196
+nosa,ewc
+forget: 2, learn: 4
+./results/mnist/2024_01_16_090253/4_samples
+Average entropy: 0.8979679093463346
+Average prob of forgotten class: 0.4681853000074625
+sa,finetuning
+forget: 2, learn: 4
+./results/mnist/2024_01_16_090831/4_samples
+Average entropy: 0.5221800021827221
+Average prob of forgotten class: 0.7582289960701019
+sa,ewc
+forget: 2, learn: 4
+./results/mnist/2024_01_16_091433/4_samples
+Average entropy: 0.7504180410178378
+Average prob of forgotten class: 0.6055783040937968
+finetuning
+forget: 3, learn: 4
+./results/mnist/2024_01_16_091841/4_samples
+Average entropy: 0.5727727719931863
+Average prob of forgotten class: 0.7282364894635975
+nosa,ewc
+forget: 3, learn: 4
+./results/mnist/2024_01_16_092240/4_samples
+Average entropy: 0.9019163703778759
+Average prob of forgotten class: 0.459980298881419
+sa,finetuning
+forget: 3, learn: 4
+./results/mnist/2024_01_16_092817/4_samples
+Average entropy: 0.5370611378457397
+Average prob of forgotten class: 0.7540678196819499
+sa,ewc
+forget: 3, learn: 4
+./results/mnist/2024_01_16_093421/4_samples
+Average entropy: 0.7571881278418005
+Average prob of forgotten class: 0.601281417766586
+finetuning
+forget: 4, learn: 4
+./results/mnist/2024_01_16_093838/4_samples
+Average entropy: 1.1583395610796288
+Average prob of forgotten class: 0.022912587326572975
+nosa,ewc
+forget: 4, learn: 4
+./results/mnist/2024_01_16_094235/4_samples
+Average entropy: 1.1571073345839977
+Average prob of forgotten class: 0.024803474654618185
+sa,finetuning
+forget: 4, learn: 4
+./results/mnist/2024_01_16_094806/4_samples
+Average entropy: 1.3576926614623517
+Average prob of forgotten class: 0.0313116676552454
+sa,ewc
+forget: 4, learn: 4
+./results/mnist/2024_01_16_095416/4_samples
+Average entropy: 1.4702270808629692
+Average prob of forgotten class: 0.03328328723728191
+finetuning
+forget: 5, learn: 4
+./results/mnist/2024_01_16_095826/4_samples
+Average entropy: 0.5854380412492901
+Average prob of forgotten class: 0.7175030449870974
+nosa,ewc
+forget: 5, learn: 4
+./results/mnist/2024_01_16_100242/4_samples
+Average entropy: 0.9350718017667532
+Average prob of forgotten class: 0.4448217856697738
+sa,finetuning
+forget: 5, learn: 4
+./results/mnist/2024_01_16_100815/4_samples
+Average entropy: 0.5520722174551338
+Average prob of forgotten class: 0.7451135375304148
+sa,ewc
+forget: 5, learn: 4
+./results/mnist/2024_01_16_101443/4_samples
+Average entropy: 0.7809786219149828
+Average prob of forgotten class: 0.5836178238969296
+finetuning
+forget: 6, learn: 4
+./results/mnist/2024_01_16_101858/4_samples
+Average entropy: 0.5549482246860862
+Average prob of forgotten class: 0.7339262777240947
+nosa,ewc
+forget: 6, learn: 4
+./results/mnist/2024_01_16_102256/4_samples
+Average entropy: 0.9147152004297823
+Average prob of forgotten class: 0.45801622164435685
+sa,finetuning
+forget: 6, learn: 4
+./results/mnist/2024_01_16_102827/4_samples
+Average entropy: 0.5186763039673679
+Average prob of forgotten class: 0.7640057820826769
+sa,ewc
+forget: 6, learn: 4
+./results/mnist/2024_01_16_103454/4_samples
+Average entropy: 0.7461821582401171
+Average prob of forgotten class: 0.6049425509991124
+finetuning
+forget: 7, learn: 4
+./results/mnist/2024_01_16_103916/4_samples
+Average entropy: 0.5670845529530197
+Average prob of forgotten class: 0.7302467371337116
+nosa,ewc
+forget: 7, learn: 4
+./results/mnist/2024_01_16_104311/4_samples
+Average entropy: 0.9187346019316465
+Average prob of forgotten class: 0.4396663383813575
+sa,finetuning
+forget: 7, learn: 4
+./results/mnist/2024_01_16_104840/4_samples
+Average entropy: 0.574546379968524
+Average prob of forgotten class: 0.7298407326452434
+sa,ewc
+forget: 7, learn: 4
+./results/mnist/2024_01_16_105439/4_samples
+Average entropy: 0.7821510449284688
+Average prob of forgotten class: 0.5717481075553223
+finetuning
+forget: 8, learn: 4
+./results/mnist/2024_01_16_105900/4_samples
+Average entropy: 0.5708513513673097
+Average prob of forgotten class: 0.7282638915348798
+nosa,ewc
+forget: 8, learn: 4
+./results/mnist/2024_01_16_110306/4_samples
+Average entropy: 0.9157680680509657
+Average prob of forgotten class: 0.45383848930941895
+sa,finetuning
+forget: 8, learn: 4
+./results/mnist/2024_01_16_110846/4_samples
+Average entropy: 0.5437848081928678
+Average prob of forgotten class: 0.7492344095371664
+sa,ewc
+forget: 8, learn: 4
+./results/mnist/2024_01_16_112646/4_samples
+Average entropy: 0.7554488537134603
+Average prob of forgotten class: 0.596770882839337
+finetuning
+forget: 9, learn: 4
+./results/mnist/2024_01_16_113102/4_samples
+Average entropy: 0.5749428131966852
+Average prob of forgotten class: 0.7212684434489347
+nosa,ewc
+forget: 9, learn: 4
+./results/mnist/2024_01_16_113455/4_samples
+Average entropy: 0.9121744631556794
+Average prob of forgotten class: 0.4600519410450943
+sa,finetuning
+forget: 9, learn: 4
+./results/mnist/2024_01_16_114133/4_samples
+Average entropy: 0.5813145357533358
+Average prob of forgotten class: 0.7256325632333755
+sa,ewc
+forget: 9, learn: 4
+./results/mnist/2024_01_16_114739/4_samples
+Average entropy: 0.8123133532935753
+Average prob of forgotten class: 0.5543061669450253
+finetuning
+forget: 0, learn: 5
+./results/mnist/2024_01_16_122545/5_samples
+Average entropy: 0.7886369526386261
+Average prob of forgotten class: 0.5326673244126141
+nosa,ewc
+forget: 0, learn: 5
+./results/mnist/2024_01_16_122944/5_samples
+Average entropy: 1.0058599238982424
+Average prob of forgotten class: 0.32525296753738075
+sa,finetuning
+forget: 0, learn: 5
+./results/mnist/2024_01_16_123517/5_samples
+Average entropy: 0.7746918566990644
+Average prob of forgotten class: 0.5526068405015394
+sa,ewc
+forget: 0, learn: 5
+./results/mnist/2024_01_16_124121/5_samples
+Average entropy: 0.9341278807260096
+Average prob of forgotten class: 0.41558300179895014
+finetuning
+forget: 1, learn: 5
+./results/mnist/2024_01_16_124536/5_samples
+Average entropy: 0.8103797566145658
+Average prob of forgotten class: 0.5243788248626515
+nosa,ewc
+forget: 1, learn: 5
+./results/mnist/2024_01_16_124931/5_samples
+Average entropy: 1.0424757654545829
+Average prob of forgotten class: 0.315025229298044
+sa,finetuning
+forget: 1, learn: 5
+./results/mnist/2024_01_16_125503/5_samples
+Average entropy: 0.7910826154984534
+Average prob of forgotten class: 0.5376650662510656
+sa,ewc
+forget: 1, learn: 5
+./results/mnist/2024_01_16_130101/5_samples
+Average entropy: 0.9262707503512502
+Average prob of forgotten class: 0.41619510314194486
+finetuning
+forget: 2, learn: 5
+./results/mnist/2024_01_16_130513/5_samples
+Average entropy: 0.8089576422935352
+Average prob of forgotten class: 0.5329552296898328
+nosa,ewc
+forget: 2, learn: 5
+./results/mnist/2024_01_16_130908/5_samples
+Average entropy: 1.0306940474547446
+Average prob of forgotten class: 0.3174391929351259
+sa,finetuning
+forget: 2, learn: 5
+./results/mnist/2024_01_16_131444/5_samples
+Average entropy: 0.780280247097835
+Average prob of forgotten class: 0.5527515297872014
+sa,ewc
+forget: 2, learn: 5
+./results/mnist/2024_01_16_132047/5_samples
+Average entropy: 0.9312911513261497
+Average prob of forgotten class: 0.4259603398386389
+finetuning
+forget: 3, learn: 5
+./results/mnist/2024_01_16_132503/5_samples
+Average entropy: 0.7984664104878902
+Average prob of forgotten class: 0.5399573584436439
+nosa,ewc
+forget: 3, learn: 5
+./results/mnist/2024_01_16_132857/5_samples
+Average entropy: 1.020997886895202
+Average prob of forgotten class: 0.32431647542398423
+sa,finetuning
+forget: 3, learn: 5
+./results/mnist/2024_01_16_133436/5_samples
+Average entropy: 0.7738811878953129
+Average prob of forgotten class: 0.5480074965162203
+sa,ewc
+forget: 3, learn: 5
+./results/mnist/2024_01_16_134045/5_samples
+Average entropy: 0.9180542591493577
+Average prob of forgotten class: 0.4266002797521651
+finetuning
+forget: 4, learn: 5
+./results/mnist/2024_01_16_134505/5_samples
+Average entropy: 0.8001595388632268
+Average prob of forgotten class: 0.5348651535459794
+nosa,ewc
+forget: 4, learn: 5
+./results/mnist/2024_01_16_134903/5_samples
+Average entropy: 1.026226707850583
+Average prob of forgotten class: 0.32205651432741433
+sa,finetuning
+forget: 4, learn: 5
+./results/mnist/2024_01_16_135435/5_samples
+Average entropy: 0.7810611299937591
+Average prob of forgotten class: 0.5505450374912471
+sa,ewc
+forget: 4, learn: 5
+./results/mnist/2024_01_16_140037/5_samples
+Average entropy: 0.9394254345679656
+Average prob of forgotten class: 0.4179864930920303
+finetuning
+forget: 5, learn: 5
+./results/mnist/2024_01_16_140451/5_samples
+Average entropy: 1.13801127334591
+Average prob of forgotten class: 0.04368689772672951
+nosa,ewc
+forget: 5, learn: 5
+./results/mnist/2024_01_16_140847/5_samples
+Average entropy: 1.126953781931661
+Average prob of forgotten class: 0.04262353083322523
+sa,finetuning
+forget: 5, learn: 5
+./results/mnist/2024_01_16_141416/5_samples
+Average entropy: 1.3120464792009443
+Average prob of forgotten class: 0.05316106861573644
+sa,ewc
+forget: 5, learn: 5
+./results/mnist/2024_01_16_142015/5_samples
+Average entropy: 1.4062564095947891
+Average prob of forgotten class: 0.06323662018985488
+finetuning
+forget: 6, learn: 5
+./results/mnist/2024_01_16_142428/5_samples
+Average entropy: 0.7969283710699528
+Average prob of forgotten class: 0.5349623747752048
+nosa,ewc
+forget: 6, learn: 5
+./results/mnist/2024_01_16_142827/5_samples
+Average entropy: 1.0180621517356485
+Average prob of forgotten class: 0.3308305698737968
+sa,finetuning
+forget: 6, learn: 5
+./results/mnist/2024_01_16_143359/5_samples
+Average entropy: 0.7753138609114103
+Average prob of forgotten class: 0.5632990887388587
+sa,ewc
+forget: 6, learn: 5
+./results/mnist/2024_01_16_143959/5_samples
+Average entropy: 0.944373706355691
+Average prob of forgotten class: 0.4196920881513506
+finetuning
+forget: 7, learn: 5
+./results/mnist/2024_01_16_144415/5_samples
+Average entropy: 0.8155289960559458
+Average prob of forgotten class: 0.5391837192000821
+nosa,ewc
+forget: 7, learn: 5
+./results/mnist/2024_01_16_144813/5_samples
+Average entropy: 1.0258189359446988
+Average prob of forgotten class: 0.3259838526137173
+sa,finetuning
+forget: 7, learn: 5
+./results/mnist/2024_01_16_145345/5_samples
+Average entropy: 0.7916905074380338
+Average prob of forgotten class: 0.5560157780419104
+sa,ewc
+forget: 7, learn: 5
+./results/mnist/2024_01_16_145941/5_samples
+Average entropy: 0.9527996483957395
+Average prob of forgotten class: 0.43400362378451973
+finetuning
+forget: 8, learn: 5
+./results/mnist/2024_01_16_150352/5_samples
+Average entropy: 0.7849538124864921
+Average prob of forgotten class: 0.5512326682219282
+nosa,ewc
+forget: 8, learn: 5
+./results/mnist/2024_01_16_150752/5_samples
+Average entropy: 1.0101615461753681
+Average prob of forgotten class: 0.33463296690024436
+sa,finetuning
+forget: 8, learn: 5
+./results/mnist/2024_01_16_151321/5_samples
+Average entropy: 0.7990676733897999
+Average prob of forgotten class: 0.5402380131417885
+sa,ewc
+forget: 8, learn: 5
+./results/mnist/2024_01_16_152006/5_samples
+Average entropy: 0.9373499804642051
+Average prob of forgotten class: 0.41190193011425436
+finetuning
+forget: 9, learn: 5
+./results/mnist/2024_01_16_152423/5_samples
+Average entropy: 0.8014545433688909
+Average prob of forgotten class: 0.5320818176260218
+nosa,ewc
+forget: 9, learn: 5
+./results/mnist/2024_01_16_152819/5_samples
+Average entropy: 1.0274594847578555
+Average prob of forgotten class: 0.3202183525718283
+sa,finetuning
+forget: 9, learn: 5
+./results/mnist/2024_01_16_153354/5_samples
+Average entropy: 0.7894476258661598
+Average prob of forgotten class: 0.5497097000479698
+sa,ewc
+forget: 9, learn: 5
+./results/mnist/2024_01_16_153956/5_samples
+Average entropy: 0.9286081679165363
+Average prob of forgotten class: 0.42213658429682255
+finetuning
+forget: 0, learn: 6
+./results/mnist/2024_01_16_161754/6_samples
+Average entropy: 0.7807401396567002
+Average prob of forgotten class: 0.4920809423783794
+nosa,ewc
+forget: 0, learn: 6
+./results/mnist/2024_01_16_162149/6_samples
+Average entropy: 1.0453087504720315
+Average prob of forgotten class: 0.2195897948986385
+sa,finetuning
+forget: 0, learn: 6
+./results/mnist/2024_01_16_162720/6_samples
+Average entropy: 0.7624666434712708
+Average prob of forgotten class: 0.5071421305183321
+sa,ewc
+forget: 0, learn: 6
+./results/mnist/2024_01_16_163325/6_samples
+Average entropy: 0.9542583456495777
+Average prob of forgotten class: 0.33423583893454634
+finetuning
+forget: 1, learn: 6
+./results/mnist/2024_01_16_163739/6_samples
+Average entropy: 0.8163293024990708
+Average prob of forgotten class: 0.453713437251281
+nosa,ewc
+forget: 1, learn: 6
+./results/mnist/2024_01_16_164134/6_samples
+Average entropy: 1.051160299917683
+Average prob of forgotten class: 0.21894555634935386
+sa,finetuning
+forget: 1, learn: 6
+./results/mnist/2024_01_16_164706/6_samples
+Average entropy: 0.7594188881339505
+Average prob of forgotten class: 0.5027812345069833
+sa,ewc
+forget: 1, learn: 6
+./results/mnist/2024_01_16_165303/6_samples
+Average entropy: 0.9368177941069007
+Average prob of forgotten class: 0.34184538980480283
+finetuning
+forget: 2, learn: 6
+./results/mnist/2024_01_16_165716/6_samples
+Average entropy: 0.7901368318125606
+Average prob of forgotten class: 0.4730980496387929
+nosa,ewc
+forget: 2, learn: 6
+./results/mnist/2024_01_16_170114/6_samples
+Average entropy: 1.0398128564702347
+Average prob of forgotten class: 0.21631831669947132
+sa,finetuning
+forget: 2, learn: 6
+./results/mnist/2024_01_16_170640/6_samples
+Average entropy: 0.7762058608932421
+Average prob of forgotten class: 0.4846093191881664
+sa,ewc
+forget: 2, learn: 6
+./results/mnist/2024_01_16_171245/6_samples
+Average entropy: 0.962105747195892
+Average prob of forgotten class: 0.3199137475457974
+finetuning
+forget: 3, learn: 6
+./results/mnist/2024_01_16_171703/6_samples
+Average entropy: 0.8110027381917462
+Average prob of forgotten class: 0.4646878254134208
+nosa,ewc
+forget: 3, learn: 6
+./results/mnist/2024_01_16_172059/6_samples
+Average entropy: 1.0537427158560604
+Average prob of forgotten class: 0.210372579167597
+sa,finetuning
+forget: 3, learn: 6
+./results/mnist/2024_01_16_172629/6_samples
+Average entropy: 0.7792302222223952
+Average prob of forgotten class: 0.4950083185103722
+sa,ewc
+forget: 3, learn: 6
+./results/mnist/2024_01_16_173230/6_samples
+Average entropy: 0.9459564362186939
+Average prob of forgotten class: 0.3276367391226813
+finetuning
+forget: 4, learn: 6
+./results/mnist/2024_01_16_173647/6_samples
+Average entropy: 0.8049381617456675
+Average prob of forgotten class: 0.4619551575742662
+nosa,ewc
+forget: 4, learn: 6
+./results/mnist/2024_01_16_174044/6_samples
+Average entropy: 1.0435377093963325
+Average prob of forgotten class: 0.2139896751032211
+sa,finetuning
+forget: 4, learn: 6
+./results/mnist/2024_01_16_174623/6_samples
+Average entropy: 0.7728041908703744
+Average prob of forgotten class: 0.4889373139012605
+sa,ewc
+forget: 4, learn: 6
+./results/mnist/2024_01_16_175225/6_samples
+Average entropy: 0.9520707150222734
+Average prob of forgotten class: 0.3188199282158166
+finetuning
+forget: 5, learn: 6
+./results/mnist/2024_01_16_175636/6_samples
+Average entropy: 0.7848179680295289
+Average prob of forgotten class: 0.4900653107906692
+nosa,ewc
+forget: 5, learn: 6
+./results/mnist/2024_01_16_180034/6_samples
+Average entropy: 1.0412772131385282
+Average prob of forgotten class: 0.2248229828546755
+sa,finetuning
+forget: 5, learn: 6
+./results/mnist/2024_01_16_180606/6_samples
+Average entropy: 0.7823641620343551
+Average prob of forgotten class: 0.5113220199709758
+sa,ewc
+forget: 5, learn: 6
+./results/mnist/2024_01_16_181208/6_samples
+Average entropy: 0.9712060241727158
+Average prob of forgotten class: 0.3312175078317523
+finetuning
+forget: 6, learn: 6
+./results/mnist/2024_01_16_181625/6_samples
+Average entropy: 1.0878732996061444
+Average prob of forgotten class: 0.030368147643457633
+nosa,ewc
+forget: 6, learn: 6
+./results/mnist/2024_01_16_182028/6_samples
+Average entropy: 1.0686274946201593
+Average prob of forgotten class: 0.028116719709942117
+sa,finetuning
+forget: 6, learn: 6
+./results/mnist/2024_01_16_182558/6_samples
+Average entropy: 1.295931679662317
+Average prob of forgotten class: 0.050715284392936155
+sa,ewc
+forget: 6, learn: 6
+./results/mnist/2024_01_16_183158/6_samples
+Average entropy: 1.416423311457038
+Average prob of forgotten class: 0.05445437830348965
+finetuning
+forget: 7, learn: 6
+./results/mnist/2024_01_16_183610/6_samples
+Average entropy: 0.7998647058848292
+Average prob of forgotten class: 0.4674011537572369
+nosa,ewc
+forget: 7, learn: 6
+./results/mnist/2024_01_16_184005/6_samples
+Average entropy: 1.0468423875281587
+Average prob of forgotten class: 0.2262579888338223
+sa,finetuning
+forget: 7, learn: 6
+./results/mnist/2024_01_16_184532/6_samples
+Average entropy: 0.7804793746909127
+Average prob of forgotten class: 0.49952850450063124
+sa,ewc
+forget: 7, learn: 6
+./results/mnist/2024_01_16_185131/6_samples
+Average entropy: 0.9550988903502002
+Average prob of forgotten class: 0.34048496349714696
+finetuning
+forget: 8, learn: 6
+./results/mnist/2024_01_16_185548/6_samples
+Average entropy: 0.7919197693699971
+Average prob of forgotten class: 0.4832353377714753
+nosa,ewc
+forget: 8, learn: 6
+./results/mnist/2024_01_16_185947/6_samples
+Average entropy: 1.0474740744102746
+Average prob of forgotten class: 0.22700330760562792
+sa,finetuning
+forget: 8, learn: 6
+./results/mnist/2024_01_16_190512/6_samples
+Average entropy: 0.745372477103956
+Average prob of forgotten class: 0.5250397074851207
+sa,ewc
+forget: 8, learn: 6
+./results/mnist/2024_01_16_191115/6_samples
+Average entropy: 0.9502323844935745
+Average prob of forgotten class: 0.34552850102772936
+finetuning
+forget: 9, learn: 6
+./results/mnist/2024_01_16_191532/6_samples
+Average entropy: 0.7951813484542072
+Average prob of forgotten class: 0.46850333525799215
+nosa,ewc
+forget: 9, learn: 6
+./results/mnist/2024_01_16_191931/6_samples
+Average entropy: 1.0501909491140395
+Average prob of forgotten class: 0.21035776197095402
+sa,finetuning
+forget: 9, learn: 6
+./results/mnist/2024_01_16_192502/6_samples
+Average entropy: 0.759893708047457
+Average prob of forgotten class: 0.515283050830476
+sa,ewc
+forget: 9, learn: 6
+./results/mnist/2024_01_16_193104/6_samples
+Average entropy: 0.9518445027060807
+Average prob of forgotten class: 0.3430587014881894
+finetuning
+forget: 0, learn: 7
+./results/mnist/2024_01_16_200846/7_samples
+Average entropy: 0.7727413699030876
+Average prob of forgotten class: 0.5278975419932976
+nosa,ewc
+forget: 0, learn: 7
+./results/mnist/2024_01_16_201244/7_samples
+Average entropy: 1.0884062522090971
+Average prob of forgotten class: 0.2722560366964899
+sa,finetuning
+forget: 0, learn: 7
+./results/mnist/2024_01_16_201815/7_samples
+Average entropy: 0.7612107092281803
+Average prob of forgotten class: 0.55079391063191
+sa,ewc
+forget: 0, learn: 7
+./results/mnist/2024_01_16_202415/7_samples
+Average entropy: 1.0075221855659038
+Average prob of forgotten class: 0.3458855701610446
+finetuning
+forget: 1, learn: 7
+./results/mnist/2024_01_16_202833/7_samples
+Average entropy: 0.7805125241866335
+Average prob of forgotten class: 0.5112970985937864
+nosa,ewc
+forget: 1, learn: 7
+./results/mnist/2024_01_16_203228/7_samples
+Average entropy: 1.0933659609872848
+Average prob of forgotten class: 0.2663716681126971
+sa,finetuning
+forget: 1, learn: 7
+./results/mnist/2024_01_16_203759/7_samples
+Average entropy: 0.7581441276706755
+Average prob of forgotten class: 0.5504855315666646
+sa,ewc
+forget: 1, learn: 7
+./results/mnist/2024_01_16_204358/7_samples
+Average entropy: 1.0230895520653576
+Average prob of forgotten class: 0.3486003077123314
+finetuning
+forget: 2, learn: 7
+./results/mnist/2024_01_16_204811/7_samples
+Average entropy: 0.7586921924958006
+Average prob of forgotten class: 0.5348260141909122
+nosa,ewc
+forget: 2, learn: 7
+./results/mnist/2024_01_16_205210/7_samples
+Average entropy: 1.0764243255835027
+Average prob of forgotten class: 0.27119126691832207
+sa,finetuning
+forget: 2, learn: 7
+./results/mnist/2024_01_16_205741/7_samples
+Average entropy: 0.7223579231649637
+Average prob of forgotten class: 0.5738555551506579
+sa,ewc
+forget: 2, learn: 7
+./results/mnist/2024_01_16_210341/7_samples
+Average entropy: 0.9972263686358929
+Average prob of forgotten class: 0.36724091100040823
+finetuning
+forget: 3, learn: 7
+./results/mnist/2024_01_16_210756/7_samples
+Average entropy: 0.7533524334430695
+Average prob of forgotten class: 0.5378766930662096
+nosa,ewc
+forget: 3, learn: 7
+./results/mnist/2024_01_16_211153/7_samples
+Average entropy: 1.0783766967942938
+Average prob of forgotten class: 0.2675535223679617
+sa,finetuning
+forget: 3, learn: 7
+./results/mnist/2024_01_16_211720/7_samples
+Average entropy: 0.7472067945054732
+Average prob of forgotten class: 0.5507296632858925
+sa,ewc
+forget: 3, learn: 7
+./results/mnist/2024_01_16_212320/7_samples
+Average entropy: 1.0256929642055184
+Average prob of forgotten class: 0.3403698173351586
+finetuning
+forget: 4, learn: 7
+./results/mnist/2024_01_16_212730/7_samples
+Average entropy: 0.76388297858648
+Average prob of forgotten class: 0.5281337897758931
+nosa,ewc
+forget: 4, learn: 7
+./results/mnist/2024_01_16_213125/7_samples
+Average entropy: 1.0895182874519378
+Average prob of forgotten class: 0.26053348736604676
+sa,finetuning
+forget: 4, learn: 7
+./results/mnist/2024_01_16_213700/7_samples
+Average entropy: 0.7554439613595605
+Average prob of forgotten class: 0.5565859078196809
+sa,ewc
+forget: 4, learn: 7
+./results/mnist/2024_01_16_214300/7_samples
+Average entropy: 1.0055257743224502
+Average prob of forgotten class: 0.36013979534618556
+finetuning
+forget: 5, learn: 7
+./results/mnist/2024_01_16_214711/7_samples
+Average entropy: 0.770743299741298
+Average prob of forgotten class: 0.5343028049683198
+nosa,ewc
+forget: 5, learn: 7
+./results/mnist/2024_01_16_215109/7_samples
+Average entropy: 1.1046780971810222
+Average prob of forgotten class: 0.2545886632287875
+sa,finetuning
+forget: 5, learn: 7
+./results/mnist/2024_01_16_215646/7_samples
+Average entropy: 0.7557813193416223
+Average prob of forgotten class: 0.5569564563920721
+sa,ewc
+forget: 5, learn: 7
+./results/mnist/2024_01_16_220244/7_samples
+Average entropy: 1.0365127724362537
+Average prob of forgotten class: 0.3377157195354812
+finetuning
+forget: 6, learn: 7
+./results/mnist/2024_01_16_220702/7_samples
+Average entropy: 0.7811290712561458
+Average prob of forgotten class: 0.5190134338336065
+nosa,ewc
+forget: 6, learn: 7
+./results/mnist/2024_01_16_221101/7_samples
+Average entropy: 1.0842636172892526
+Average prob of forgotten class: 0.26933336022193544
+sa,finetuning
+forget: 6, learn: 7
+./results/mnist/2024_01_16_221635/7_samples
+Average entropy: 0.7459883169503883
+Average prob of forgotten class: 0.5515158168273047
+sa,ewc
+forget: 6, learn: 7
+./results/mnist/2024_01_16_222237/7_samples
+Average entropy: 1.0165528660872951
+Average prob of forgotten class: 0.3591234775958583
+finetuning
+forget: 7, learn: 7
+./results/mnist/2024_01_16_222648/7_samples
+Average entropy: 1.2490641209296882
+Average prob of forgotten class: 0.04195911399438046
+nosa,ewc
+forget: 7, learn: 7
+./results/mnist/2024_01_16_223045/7_samples
+Average entropy: 1.250680242315866
+Average prob of forgotten class: 0.040065562090603635
+sa,finetuning
+forget: 7, learn: 7
+./results/mnist/2024_01_16_223620/7_samples
+Average entropy: 1.5109133336227387
+Average prob of forgotten class: 0.059089787828270346
+sa,ewc
+forget: 7, learn: 7
+./results/mnist/2024_01_16_224221/7_samples
+Average entropy: 1.6048515914008021
+Average prob of forgotten class: 0.06437117749010213
+finetuning
+forget: 8, learn: 7
+./results/mnist/2024_01_16_224636/7_samples
+Average entropy: 0.7820790248806588
+Average prob of forgotten class: 0.5171955853584222
+nosa,ewc
+forget: 8, learn: 7
+./results/mnist/2024_01_16_225031/7_samples
+Average entropy: 1.0892197374487296
+Average prob of forgotten class: 0.26108825899427757
+sa,finetuning
+forget: 8, learn: 7
+./results/mnist/2024_01_16_225559/7_samples
+Average entropy: 0.7676379178883508
+Average prob of forgotten class: 0.5394666155334562
+sa,ewc
+forget: 8, learn: 7
+./results/mnist/2024_01_16_230159/7_samples
+Average entropy: 1.0114638187224045
+Average prob of forgotten class: 0.33972320187604055
+finetuning
+forget: 9, learn: 7
+./results/mnist/2024_01_16_230614/7_samples
+Average entropy: 0.7705175989540294
+Average prob of forgotten class: 0.5260882296133786
+nosa,ewc
+forget: 9, learn: 7
+./results/mnist/2024_01_16_231011/7_samples
+Average entropy: 1.0955076527316123
+Average prob of forgotten class: 0.25528241437859833
+sa,finetuning
+forget: 9, learn: 7
+./results/mnist/2024_01_16_231546/7_samples
+Average entropy: 0.7795507260598242
+Average prob of forgotten class: 0.5248229565331712
+sa,ewc
+forget: 9, learn: 7
+./results/mnist/2024_01_16_232143/7_samples
+Average entropy: 1.0254748618463054
+Average prob of forgotten class: 0.3245417808648199
+finetuning
+forget: 0, learn: 8
+./results/mnist/2024_01_17_000004/8_samples
+Average entropy: 1.0585357174277306
+Average prob of forgotten class: 0.38436347764218226
+nosa,ewc
+forget: 0, learn: 8
+./results/mnist/2024_01_17_000400/8_samples
+Average entropy: 1.2221943825716153
+Average prob of forgotten class: 0.20245439803693444
+sa,finetuning
+forget: 0, learn: 8
+./results/mnist/2024_01_17_000934/8_samples
+Average entropy: 1.045238490914926
+Average prob of forgotten class: 0.4111587829538621
+sa,ewc
+forget: 0, learn: 8
+./results/mnist/2024_01_17_001534/8_samples
+Average entropy: 1.1809366499073803
+Average prob of forgotten class: 0.2769085894979071
+finetuning
+forget: 1, learn: 8
+./results/mnist/2024_01_17_001944/8_samples
+Average entropy: 1.0508573546539992
+Average prob of forgotten class: 0.3855362284812145
+nosa,ewc
+forget: 1, learn: 8
+./results/mnist/2024_01_17_002340/8_samples
+Average entropy: 1.213867770973593
+Average prob of forgotten class: 0.20344685741292778
+sa,finetuning
+forget: 1, learn: 8
+./results/mnist/2024_01_17_002910/8_samples
+Average entropy: 1.031532105174847
+Average prob of forgotten class: 0.4138980201096274
+sa,ewc
+forget: 1, learn: 8
+./results/mnist/2024_01_17_003512/8_samples
+Average entropy: 1.1503024972043931
+Average prob of forgotten class: 0.2974691834533587
+finetuning
+forget: 2, learn: 8
+./results/mnist/2024_01_17_003931/8_samples
+Average entropy: 1.04066587111447
+Average prob of forgotten class: 0.405957251903601
+nosa,ewc
+forget: 2, learn: 8
+./results/mnist/2024_01_17_004331/8_samples
+Average entropy: 1.213320795330219
+Average prob of forgotten class: 0.21256858931155875
+sa,finetuning
+forget: 2, learn: 8
+./results/mnist/2024_01_17_004900/8_samples
+Average entropy: 1.0168684943346307
+Average prob of forgotten class: 0.4248609960777685
+sa,ewc
+forget: 2, learn: 8
+./results/mnist/2024_01_17_005504/8_samples
+Average entropy: 1.1565528943901882
+Average prob of forgotten class: 0.29034033889183775
+finetuning
+forget: 3, learn: 8
+./results/mnist/2024_01_17_005921/8_samples
+Average entropy: 1.0406828577397391
+Average prob of forgotten class: 0.3987812012201175
+nosa,ewc
+forget: 3, learn: 8
+./results/mnist/2024_01_17_010322/8_samples
+Average entropy: 1.2094839673954993
+Average prob of forgotten class: 0.201141543846461
+sa,finetuning
+forget: 3, learn: 8
+./results/mnist/2024_01_17_010853/8_samples
+Average entropy: 1.0448096842737868
+Average prob of forgotten class: 0.40110225952230394
+sa,ewc
+forget: 3, learn: 8
+./results/mnist/2024_01_17_011456/8_samples
+Average entropy: 1.1682774347718805
+Average prob of forgotten class: 0.28661502682371065
+finetuning
+forget: 4, learn: 8
+./results/mnist/2024_01_17_011909/8_samples
+Average entropy: 1.0586117195198312
+Average prob of forgotten class: 0.3834258693968877
+nosa,ewc
+forget: 4, learn: 8
+./results/mnist/2024_01_17_012309/8_samples
+Average entropy: 1.2259886321844533
+Average prob of forgotten class: 0.19815285422373563
+sa,finetuning
+forget: 4, learn: 8
+./results/mnist/2024_01_17_012843/8_samples
+Average entropy: 1.0328424855833873
+Average prob of forgotten class: 0.4187589649227448
+sa,ewc
+forget: 4, learn: 8
+./results/mnist/2024_01_17_013447/8_samples
+Average entropy: 1.1644569411873817
+Average prob of forgotten class: 0.29047368257306516
+finetuning
+forget: 5, learn: 8
+./results/mnist/2024_01_17_013907/8_samples
+Average entropy: 1.033980319625698
+Average prob of forgotten class: 0.4090784735744819
+nosa,ewc
+forget: 5, learn: 8
+./results/mnist/2024_01_17_014305/8_samples
+Average entropy: 1.2131210013758391
+Average prob of forgotten class: 0.21996547823073342
+sa,finetuning
+forget: 5, learn: 8
+./results/mnist/2024_01_17_014838/8_samples
+Average entropy: 1.0225570757174864
+Average prob of forgotten class: 0.4171180439298041
+sa,ewc
+forget: 5, learn: 8
+./results/mnist/2024_01_17_015440/8_samples
+Average entropy: 1.1598328698892146
+Average prob of forgotten class: 0.28640924021601677
+finetuning
+forget: 6, learn: 8
+./results/mnist/2024_01_17_015854/8_samples
+Average entropy: 1.047112398315221
+Average prob of forgotten class: 0.40078095556236804
+nosa,ewc
+forget: 6, learn: 8
+./results/mnist/2024_01_17_020251/8_samples
+Average entropy: 1.2073903388809413
+Average prob of forgotten class: 0.20512207990395837
+sa,finetuning
+forget: 6, learn: 8
+./results/mnist/2024_01_17_020822/8_samples
+Average entropy: 1.0162686255062
+Average prob of forgotten class: 0.4279748661501799
+sa,ewc
+forget: 6, learn: 8
+./results/mnist/2024_01_17_021432/8_samples
+Average entropy: 1.1454143996816128
+Average prob of forgotten class: 0.30162792961345986
+finetuning
+forget: 7, learn: 8
+./results/mnist/2024_01_17_021846/8_samples
+Average entropy: 1.0486244998173788
+Average prob of forgotten class: 0.3885023017646745
+nosa,ewc
+forget: 7, learn: 8
+./results/mnist/2024_01_17_022245/8_samples
+Average entropy: 1.208721031434834
+Average prob of forgotten class: 0.20651854590687435
+sa,finetuning
+forget: 7, learn: 8
+./results/mnist/2024_01_17_022821/8_samples
+Average entropy: 1.0290376795455813
+Average prob of forgotten class: 0.41682232689345255
+sa,ewc
+forget: 7, learn: 8
+./results/mnist/2024_01_17_023421/8_samples
+Average entropy: 1.1633509923703969
+Average prob of forgotten class: 0.2899995121406391
+finetuning
+forget: 8, learn: 8
+./results/mnist/2024_01_17_023831/8_samples
+Average entropy: 1.1757917541544884
+Average prob of forgotten class: 0.044825720935477875
+nosa,ewc
+forget: 8, learn: 8
+./results/mnist/2024_01_17_024225/8_samples
+Average entropy: 1.1815065615810454
+Average prob of forgotten class: 0.04713375093706418
+sa,finetuning
+forget: 8, learn: 8
+./results/mnist/2024_01_17_024802/8_samples
+Average entropy: 1.356575692538172
+Average prob of forgotten class: 0.08447721315314993
+sa,ewc
+forget: 8, learn: 8
+./results/mnist/2024_01_17_025354/8_samples
+Average entropy: 1.4781699406448752
+Average prob of forgotten class: 0.09571706538554281
+finetuning
+forget: 9, learn: 8
+./results/mnist/2024_01_17_025810/8_samples
+Average entropy: 1.030091969994828
+Average prob of forgotten class: 0.39736074465326965
+nosa,ewc
+forget: 9, learn: 8
+./results/mnist/2024_01_17_030206/8_samples
+Average entropy: 1.223988927085884
+Average prob of forgotten class: 0.20944458903977647
+sa,finetuning
+forget: 9, learn: 8
+./results/mnist/2024_01_17_030730/8_samples
+Average entropy: 1.0178852898534387
+Average prob of forgotten class: 0.42605309083592147
+sa,ewc
+forget: 9, learn: 8
+./results/mnist/2024_01_17_031317/8_samples
+Average entropy: 1.166373572545126
+Average prob of forgotten class: 0.28906905371695757
+finetuning
+forget: 0, learn: 9
+./results/mnist/2024_01_17_035054/9_samples
+Average entropy: 0.8956269294722006
+Average prob of forgotten class: 0.47109325107885525
+nosa,ewc
+forget: 0, learn: 9
+./results/mnist/2024_01_17_035452/9_samples
+Average entropy: 1.1178848691051826
+Average prob of forgotten class: 0.22952244419138879
+sa,finetuning
+forget: 0, learn: 9
+./results/mnist/2024_01_17_040034/9_samples
+Average entropy: 0.875789541983977
+Average prob of forgotten class: 0.5003802445135079
+sa,ewc
+forget: 0, learn: 9
+./results/mnist/2024_01_17_040620/9_samples
+Average entropy: 1.0506567675620317
+Average prob of forgotten class: 0.32163759908871725
+finetuning
+forget: 1, learn: 9
+./results/mnist/2024_01_17_041035/9_samples
+Average entropy: 0.901061880402267
+Average prob of forgotten class: 0.458772093988955
+nosa,ewc
+forget: 1, learn: 9
+./results/mnist/2024_01_17_041430/9_samples
+Average entropy: 1.1005558628821746
+Average prob of forgotten class: 0.22545726629323326
+sa,finetuning
+forget: 1, learn: 9
+./results/mnist/2024_01_17_042002/9_samples
+Average entropy: 0.873725734767504
+Average prob of forgotten class: 0.48067748377798125
+sa,ewc
+forget: 1, learn: 9
+./results/mnist/2024_01_17_042557/9_samples
+Average entropy: 1.0381313267862424
+Average prob of forgotten class: 0.3154742362094112
+finetuning
+forget: 2, learn: 9
+./results/mnist/2024_01_17_043011/9_samples
+Average entropy: 0.8804602897725999
+Average prob of forgotten class: 0.4811910946154967
+nosa,ewc
+forget: 2, learn: 9
+./results/mnist/2024_01_17_043404/9_samples
+Average entropy: 1.1139034684747458
+Average prob of forgotten class: 0.22287944151321426
+sa,finetuning
+forget: 2, learn: 9
+./results/mnist/2024_01_17_043935/9_samples
+Average entropy: 0.8455873732455075
+Average prob of forgotten class: 0.5223807906731963
+sa,ewc
+forget: 2, learn: 9
+./results/mnist/2024_01_17_044527/9_samples
+Average entropy: 1.0209022178314626
+Average prob of forgotten class: 0.3475380378658883
+finetuning
+forget: 3, learn: 9
+./results/mnist/2024_01_17_044940/9_samples
+Average entropy: 0.88780885678716
+Average prob of forgotten class: 0.4809114900417626
+nosa,ewc
+forget: 3, learn: 9
+./results/mnist/2024_01_17_045331/9_samples
+Average entropy: 1.1188869673060253
+Average prob of forgotten class: 0.22651846782537177
+sa,finetuning
+forget: 3, learn: 9
+./results/mnist/2024_01_17_045904/9_samples
+Average entropy: 0.8707244528923184
+Average prob of forgotten class: 0.4981531493831426
+sa,ewc
+forget: 3, learn: 9
+./results/mnist/2024_01_17_050455/9_samples
+Average entropy: 1.0460013477131724
+Average prob of forgotten class: 0.3248058722820133
+finetuning
+forget: 4, learn: 9
+./results/mnist/2024_01_17_050906/9_samples
+Average entropy: 0.8880926674464718
+Average prob of forgotten class: 0.4793647915357724
+nosa,ewc
+forget: 4, learn: 9
+./results/mnist/2024_01_17_051304/9_samples
+Average entropy: 1.1166163836605847
+Average prob of forgotten class: 0.2271510221180506
+sa,finetuning
+forget: 4, learn: 9
+./results/mnist/2024_01_17_051838/9_samples
+Average entropy: 0.8571566794998944
+Average prob of forgotten class: 0.5054470165632665
+sa,ewc
+forget: 4, learn: 9
+./results/mnist/2024_01_17_052430/9_samples
+Average entropy: 1.0283617462264374
+Average prob of forgotten class: 0.3311047027236782
+finetuning
+forget: 5, learn: 9
+./results/mnist/2024_01_17_052846/9_samples
+Average entropy: 0.8805585706140846
+Average prob of forgotten class: 0.47694608292658813
+nosa,ewc
+forget: 5, learn: 9
+./results/mnist/2024_01_17_053241/9_samples
+Average entropy: 1.116127209039405
+Average prob of forgotten class: 0.22101556637790054
+sa,finetuning
+forget: 5, learn: 9
+./results/mnist/2024_01_17_053815/9_samples
+Average entropy: 0.8514610837446526
+Average prob of forgotten class: 0.5016192044713534
+sa,ewc
+forget: 5, learn: 9
+./results/mnist/2024_01_17_054403/9_samples
+Average entropy: 1.0334917288273573
+Average prob of forgotten class: 0.3243468623259105
+finetuning
+forget: 6, learn: 9
+./results/mnist/2024_01_17_054813/9_samples
+Average entropy: 0.8821672289632261
+Average prob of forgotten class: 0.4802550566382706
+nosa,ewc
+forget: 6, learn: 9
+./results/mnist/2024_01_17_055211/9_samples
+Average entropy: 1.1117921851109713
+Average prob of forgotten class: 0.2266926245065406
+sa,finetuning
+forget: 6, learn: 9
+./results/mnist/2024_01_17_055744/9_samples
+Average entropy: 0.8479084346909076
+Average prob of forgotten class: 0.5104918765136972
+sa,ewc
+forget: 6, learn: 9
+./results/mnist/2024_01_17_060338/9_samples
+Average entropy: 1.0425374126061797
+Average prob of forgotten class: 0.33181535615585744
+finetuning
+forget: 7, learn: 9
+./results/mnist/2024_01_17_060755/9_samples
+Average entropy: 0.8845252253813669
+Average prob of forgotten class: 0.4788633934222162
+nosa,ewc
+forget: 7, learn: 9
+./results/mnist/2024_01_17_061151/9_samples
+Average entropy: 1.1131690279580653
+Average prob of forgotten class: 0.22710679628653452
+sa,finetuning
+forget: 7, learn: 9
+./results/mnist/2024_01_17_061719/9_samples
+Average entropy: 0.8839108885731548
+Average prob of forgotten class: 0.48505713912891224
+sa,ewc
+forget: 7, learn: 9
+./results/mnist/2024_01_17_062320/9_samples
+Average entropy: 1.0462921551661566
+Average prob of forgotten class: 0.3219048423343338
+finetuning
+forget: 8, learn: 9
+./results/mnist/2024_01_17_062739/9_samples
+Average entropy: 0.8938743353355676
+Average prob of forgotten class: 0.4766865329584107
+nosa,ewc
+forget: 8, learn: 9
+./results/mnist/2024_01_17_063133/9_samples
+Average entropy: 1.1182467688340694
+Average prob of forgotten class: 0.2255984851217363
+sa,finetuning
+forget: 8, learn: 9
+./results/mnist/2024_01_17_063712/9_samples
+Average entropy: 0.8641392167191952
+Average prob of forgotten class: 0.49870416475459933
+sa,ewc
+forget: 8, learn: 9
+./results/mnist/2024_01_17_064306/9_samples
+Average entropy: 1.0359070058912039
+Average prob of forgotten class: 0.3225821319501847
+finetuning
+forget: 9, learn: 9
+./results/mnist/2024_01_17_064721/9_samples
+Average entropy: 1.23190759960562
+Average prob of forgotten class: 0.04820867188391276
+nosa,ewc
+forget: 9, learn: 9
+./results/mnist/2024_01_17_065117/9_samples
+Average entropy: 1.235454972134903
+Average prob of forgotten class: 0.04551555660873419
+sa,finetuning
+forget: 9, learn: 9
+./results/mnist/2024_01_17_065652/9_samples
+Average entropy: 1.349712205817923
+Average prob of forgotten class: 0.028781644126866013
+sa,ewc
+forget: 9, learn: 9
+./results/mnist/2024_01_17_070243/9_samples
+Average entropy: 1.4340910627506673
+Average prob of forgotten class: 0.029588266676000785

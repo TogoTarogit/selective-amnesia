@@ -5,6 +5,7 @@ import datetime
 file_path = "./2024_01_12_212528_mnist_forget_learn_test.txt"
 file_path = "./2024_01_09_mnist_forget_learn_test.txt" 
 file_path = "./2024_01_14_132849_mnist_forget_learn_test.txt"
+file_path = "./2024_01_15_155632_mnist_forget_learn_test.txt"
 
 
 # 結果を保持するための辞書を準備
@@ -17,6 +18,9 @@ results = {
 
 # 現在の日時を取得（年_月_日_時_分の形式）
 current_time = datetime.datetime.now().strftime("%Y_%m_%d_%H")
+contents = "\n"+"When given a random image during the forgetting process"
+file_name = "\n" +file_path
+subtitle = current_time + contents + file_name
 # ファイルを読み込む
 with open(file_path, 'r') as file:
     lines = file.readlines()
@@ -77,7 +81,7 @@ for forget in range(10):
 # SA EWCの行列をプロット
 plt.figure(figsize=(10, 10))
 plt.imshow(matrix_sa_ewc, cmap='hot', interpolation='nearest')
-plt.title('SA EWC')
+plt.title('SA EWC' + subtitle)
 plt.colorbar()
 plt.xticks(range(10), [f'learn_{i}' for i in range(10)])
 plt.yticks(range(10), [f'forget_{i}' for i in range(10)])
@@ -94,7 +98,7 @@ plt.close()
 # NoSA EWCの行列をプロット
 plt.figure(figsize=(10, 10))
 plt.imshow(matrix_nosa_ewc, cmap='hot', interpolation='nearest')
-plt.title('NoSA EWC')
+plt.title('NoSA EWC' + subtitle)
 plt.colorbar()
 plt.xticks(range(10), [f'learn_{i}' for i in range(10)])
 plt.yticks(range(10), [f'forget_{i}' for i in range(10)])
@@ -115,7 +119,7 @@ max_image_ratio = 1.0 + 0.1
 # 差分行列をプロット
 plt.figure(figsize=(10, 10))
 plt.imshow(matrix_diff, cmap='RdBu', interpolation='nearest',vmin=-max_abs_value*max_image_ratio, vmax=max_abs_value*max_image_ratio)
-plt.title('Difference between SA EWC and NoSA EWC')
+plt.title('Difference between SA EWC and NoSA EWC' +subtitle)
 plt.colorbar()
 plt.xticks(range(10), [f'learn_{i}' for i in range(10)])
 plt.yticks(range(10), [f'forget_{i}' for i in range(10)])
@@ -132,7 +136,7 @@ plt.close()
 # finetuningの行列をプロット
 plt.figure(figsize=(10, 10))
 plt.imshow(matrix_finetuning, cmap='hot', interpolation='nearest')
-plt.title('Finetuning')
+plt.title('Finetuning' + subtitle)
 plt.colorbar()
 plt.xticks(range(10), [f'learn_{i}' for i in range(10)])
 plt.yticks(range(10), [f'forget_{i}' for i in range(10)])
@@ -146,7 +150,7 @@ plt.close()
 # SA Finetuningの行列をプロット
 plt.figure(figsize=(10, 10))
 plt.imshow(matrix_sa_finetuning, cmap='hot', interpolation='nearest')
-plt.title('SA Finetuning')
+plt.title('SA Finetuning'+subtitle)
 plt.colorbar()
 plt.xticks(range(10), [f'learn_{i}' for i in range(10)])
 plt.yticks(range(10), [f'forget_{i}' for i in range(10)])
@@ -164,7 +168,7 @@ max_abs_value_finetuning = np.max(np.abs(matrix_diff_finetuning))
 # 差分行列をプロット
 plt.figure(figsize=(10, 10))
 plt.imshow(matrix_diff_finetuning, cmap='RdBu', interpolation='nearest', vmin=-max_abs_value_finetuning*max_image_ratio, vmax=max_abs_value_finetuning*max_image_ratio)
-plt.title('Difference between SA Finetuning and Finetuning')
+plt.title('Difference between SA Finetuning and Finetuning' + subtitle)
 plt.colorbar()
 plt.xticks(range(10), [f'learn_{i}' for i in range(10)])
 plt.yticks(range(10), [f'forget_{i}' for i in range(10)])
