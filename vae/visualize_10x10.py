@@ -4,8 +4,8 @@ import datetime
 # ファイルを読み込んで分析する
 file_path = "./2024_01_12_212528_mnist_forget_learn_test.txt"
 file_path = "./2024_01_09_mnist_forget_learn_test.txt" 
-file_path = "./2024_01_14_132849_mnist_forget_learn_test.txt"
-file_path = "./2024_01_15_155632_mnist_forget_learn_test.txt"
+file_path = "./2024_01_14_132849_mnist_forget_learn_test.txt" # white noise image forget 
+file_path = "./2024_01_15_155632_mnist_forget_learn_test.txt"# random image forget
 
 
 # 結果を保持するための辞書を準備

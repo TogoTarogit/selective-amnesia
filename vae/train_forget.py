@@ -96,7 +96,7 @@ def train():
         c_forget = F.one_hot(c_forget, 10)
         out_forget = torch.rand((args.batch_size, 1, 28, 28)).to(device)
         
-        # 雑音画像以外を埋め込む場合
+        # 雑音画像ではなくほかのランダムなクラスを埋め込む場合
         # c_forget = (torch.ones(args.batch_size, dtype=int) * args.label_to_drop).to(device)
         # c_forget = F.one_hot(c_forget, 10)
         # z_forget = torch.randn((args.batch_size, new_config.z_dim)).to(device)
