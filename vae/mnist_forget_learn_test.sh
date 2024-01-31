@@ -12,7 +12,7 @@ cuda_num=1
 # サンプルとして出力する画像の枚数
 # n_samples=1000
 n_samples=10000
-
+dataset="fashion"
 # 結果保存用ディレクトリ
 result_save_dir="./results/text_results"
 
@@ -27,6 +27,7 @@ result_dir_name="$result_save_dir/$file_name"
 echo "experiment date: $(date "+%Y/%m/%d %H:%M:%S")" | tee -a $result_dir_name
 # 実験の内容について記録
 echo "experiment content: 忘却のさせ方をランダムに与えるようにして再実験" | tee -a $result_dir_name
+echo "dataset:$dataset ,  " | tee -a $result_dir_name
 # ファイルに変数の値を追記
 echo "CUDA Number: $cuda_num" >> $result_dir_name
 echo "Number of Samples: $n_samples" >> $result_dir_name
@@ -36,7 +37,7 @@ echo "Number of Samples: $n_samples" >> $result_dir_name
 for learn in ${list_ewc_learn[@]}; do
     echo "start VAE training. no train data class is $learn"
     vae_output_str=$(
-        CUDA_VISIBLE_DEVICES="$cuda_num" python train_cvae.py --remove_label $learn --config mnist.yaml --data_path ./dataset
+        CUDA_VISIBLE_DEVICES="$cuda_num" python train_cvae.py --remove_label $learn --config mnist.yaml --data_path ./dataset --dataset $dataset
         # 学習を早く終わらせるためにn_itersを5000に設定
         # CUDA_VISIBLE_DEVICES="$cuda_num" python train_cvae.py --n_iters 500 --remove_label $learn --config mnist.yaml --data_path ./dataset
         ) 

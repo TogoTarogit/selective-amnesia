@@ -46,7 +46,9 @@ def parse_args_and_config():
     parser.add_argument(
         "--lr", type=float, default=0.0001, help='Learning rate'
     )
-
+    parser.add_argument(
+        "--dataset", type=str, default="mnist", choices=["mnist", "fashion"], help="The dataset to use ('mnist' or 'fashion')"
+    )
     args = parser.parse_args()
     config = get_config_and_setup_dirs(args.config)
 
@@ -129,13 +131,17 @@ if __name__ == "__main__":
     
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     args, config = parse_args_and_config()
-    logging.info(f"Beginning basic training of conditional VAE")
+    logging.info(f"Beginning basic training of conditional VAE with {args.dataset} dataset")
     remove_label = args.remove_label
     
-    # MNIST Dataset
-    train_dataset = datasets.MNIST(root=args.data_path, train=True, transform=transforms.ToTensor(), download=True)
-    test_dataset = datasets.MNIST(root=args.data_path, train=False, transform=transforms.ToTensor(), download=False)
-    
+    # MNIST or Fashion MNIST Dataset
+    if args.dataset == "mnist":
+        DatasetClass = datasets.MNIST
+    elif args.dataset == "fashion":
+        DatasetClass = datasets.FashionMNIST
+
+    train_dataset = DatasetClass(root=args.data_path, train=True, transform=transforms.ToTensor(), download=True)
+    test_dataset = DatasetClass(root=args.data_path, train=False, transform=transforms.ToTensor(), download=True)
     # fileter labels
     labels_to_keep = list(range(10)) #0-9のラベル
     labels_to_keep.remove(remove_label) #  
