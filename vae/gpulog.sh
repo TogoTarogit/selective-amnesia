@@ -3,31 +3,33 @@
 # GPU監視スクリプト（CSV形式、複数GPU対応）
 
 # ログファイルのパスを設定
-LOG_FILE="./gpu_memory_usage_log.csv"
+LOG_FILE="./results/gpulog/gpu_memory_usage_log.csv"
 GRAPH_FILE="./gpu_memory_usage_graph.png"
 
 # 監視間隔（秒）
 INTERVAL=60
 
 # グラフ更新間隔（秒）
-GRAPH_UPDATE_INTERVAL=3600
+GRAPH_UPDATE_INTERVAL=900
 
 # GPUの数を取得
 NUM_GPUS=$(nvidia-smi --query-gpu=index --format=csv,noheader | wc -l)
 
-# 既にログファイルが存在するかチェック
-if [ ! -f "$LOG_FILE" ]; then
-    # CSVヘッダーを設定
-    echo -n "timestamp," > $LOG_FILE
-    for ((i=0; i<NUM_GPUS; i++))
-    do
-        echo -n "GPU${i}_util,GPU${i}_mem_util" >> $LOG_FILE
-        if [ $i -lt $((NUM_GPUS-1)) ]; then
-            echo -n "," >> $LOG_FILE
-        fi
-    done
-    echo "" >> $LOG_FILE
+# ログファイルが存在する場合、初期化
+if [ -f "$LOG_FILE" ]; then
+    > $LOG_FILE
 fi
+
+# CSVヘッダーを設定
+echo -n "timestamp," > $LOG_FILE
+for ((i=0; i<NUM_GPUS; i++))
+do
+    echo -n "GPU${i}_util,GPU${i}_mem_util" >> $LOG_FILE
+    if [ $i -lt $((NUM_GPUS-1)) ]; then
+        echo -n "," >> $LOG_FILE
+    fi
+done
+echo "" >> $LOG_FILE
 
 # ログ記録の無限ループ
 while true
