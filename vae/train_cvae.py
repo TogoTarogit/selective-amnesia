@@ -20,7 +20,7 @@ def parse_args_and_config():
         '--remove_label', type=int, default=0,help='an integer for no train label'
     )
     parser.add_argument(
-        "--config", type=str, default="mnist.yaml", help="Path to config file"
+        "--config", type=str, default="mnist.yaml", choices=["mnist.yaml", "fashion.yaml"], help="Path to config file"
     )
     
     parser.add_argument(
