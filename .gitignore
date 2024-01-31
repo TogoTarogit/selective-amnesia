@@ -3,3 +3,4 @@ vae/nohup.out
 *.out
 *.csv
 vae/gpu_memory_usage_log.csv
+*.txt
