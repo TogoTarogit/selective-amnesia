@@ -8,11 +8,12 @@ list_forget=(0 1 2 3 4 5 6 7 8 9)
 # list_forget=(0)
 
 # GPUの指定を変数として甘止める
-cuda_num=1
+cuda_num=0
 # サンプルとして出力する画像の枚数
 # n_samples=1000
 n_samples=10000
 dataset="fashion"
+forgetting_method="noise"
 # 結果保存用ディレクトリ
 result_save_dir="./results/text_results"
 
@@ -27,7 +28,7 @@ result_dir_name="$result_save_dir/$file_name"
 echo "experiment date: $(date "+%Y/%m/%d %H:%M:%S")" | tee -a $result_dir_name
 # 実験の内容について記録
 echo "experiment content: 忘却のさせ方をランダムに与えるようにして再実験" | tee -a $result_dir_name
-echo "dataset:$dataset ,  " | tee -a $result_dir_name
+echo "dataset:$dataset , forgetting method:$forgetting_method " | tee -a $result_dir_name
 # ファイルに変数の値を追記
 echo "CUDA Number: $cuda_num" >> $result_dir_name
 echo "Number of Samples: $n_samples" >> $result_dir_name
@@ -100,7 +101,7 @@ for learn in ${list_ewc_learn[@]}; do
         echo "start SA and finetuning "
             # FIMはを適用した際のものを引き継ぐため再計算は不要
             sa_output_str=$(
-                CUDA_VISIBLE_DEVICES="$cuda_num" python train_forget.py --ckpt_folder $vae_save_dir --label_to_drop $forget --lmbda 100
+                CUDA_VISIBLE_DEVICES="$cuda_num" python train_forget.py --ckpt_folder $vae_save_dir --label_to_drop $forget --lmbda 100 --forgetting_method $forgetting_method
             ) 
             # output から sa vae のsave dir を抜き取る
             sa_save_dir=$(echo "$sa_output_str" | grep -oP 'sa save dir:\K[^\n]*')

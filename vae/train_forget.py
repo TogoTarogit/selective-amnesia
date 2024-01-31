@@ -50,6 +50,10 @@ def parse_args_and_ckpt():
     parser.add_argument(
         "--batch_size", type=int, default=256, help='Batch size for training'
     )
+    parser.add_argument(
+        "--forgetting_method", type=str, default="noise", choices=["noise", "random_class"], help="Method to forget: 'noise' for random noise, 'random_class' for random class images"
+    )
+
     
     args = parser.parse_args()
     ckpt = torch.load(os.path.join(args.ckpt_folder, "ckpts/ckpt.pt"), map_location=device)
@@ -90,18 +94,19 @@ def train():
         c_remember = F.one_hot(c_remember, 10)
         z_remember = torch.randn((args.batch_size, new_config.z_dim)).to(device)
         
-        # ここを覚えたい画像に変更すると埋め込めるかもしれない
-        # 雑音を埋め込む場合
-        c_forget = (torch.ones(args.batch_size, dtype=int) * args.label_to_drop).to(device)
-        c_forget = F.one_hot(c_forget, 10)
-        out_forget = torch.rand((args.batch_size, 1, 28, 28)).to(device)
-        
-        # 雑音画像ではなくほかのランダムなクラスを埋め込む場合
-        # c_forget = (torch.ones(args.batch_size, dtype=int) * args.label_to_drop).to(device)
-        # c_forget = F.one_hot(c_forget, 10)
-        # z_forget = torch.randn((args.batch_size, new_config.z_dim)).to(device)
-        # with torch.no_grad():
-        #     out_forget = vae_clone.decoder(z_forget, c_forget).view(-1, 1, 28, 28)
+        if args.forgetting_method == "noise":
+            # 雑音画像を生成して忘れさせる
+            c_forget = (torch.ones(args.batch_size, dtype=int) * args.label_to_drop).to(device)
+            c_forget = F.one_hot(c_forget, 10)
+            out_forget = torch.rand((args.batch_size, 1, 28, 28)).to(device)
+        elif args.forgetting_method == "random_class":
+            # ランダムなクラスの画像を生成して忘れさせる
+            c_forget = torch.from_numpy(np.random.choice(label_choices, size=args.batch_size)).to(device)
+            c_forget = F.one_hot(c_forget, 10)
+            z_forget = torch.randn((args.batch_size, new_config.z_dim)).to(device)
+            with torch.no_grad():
+                out_forget = vae_clone.decoder(z_forget, c_forget).view(-1, 1, 28, 28)
+
         
         
         with torch.no_grad():
