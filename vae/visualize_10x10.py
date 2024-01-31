@@ -4,9 +4,9 @@ import datetime
 # ファイルを読み込んで分析する
 file_path = "./2024_01_12_212528_mnist_forget_learn_test.txt"
 file_path = "./2024_01_09_mnist_forget_learn_test.txt" 
-file_path = "./2024_01_14_132849_mnist_forget_learn_test.txt" # white noise image forget 
 file_path = "./2024_01_15_155632_mnist_forget_learn_test.txt"# random image forget
-
+file_path = "./2024_01_14_132849_mnist_forget_learn_test.txt" # white noise image forget  include bug
+file_path = "./2024_01_17_172647_mnist_forget_learn_test.txt"
 
 # 結果を保持するための辞書を準備
 results = {
@@ -18,7 +18,7 @@ results = {
 
 # 現在の日時を取得（年_月_日_時_分の形式）
 current_time = datetime.datetime.now().strftime("%Y_%m_%d_%H")
-contents = "\n"+"When given a random image during the forgetting process"
+contents = "\n"+"When given a whitenouse image during the forgetting process"
 file_name = "\n" +file_path
 subtitle = current_time + contents + file_name
 # ファイルを読み込む
@@ -116,14 +116,14 @@ matrix_diff = np.array(matrix_sa_ewc) - np.array(matrix_nosa_ewc)
 max_abs_value = np.max(np.abs(matrix_diff))
 # 図の最大値を調整する変数
 max_image_ratio = 1.0 + 0.1
-# 差分行列をプロット
+
+# EWC　の差分行列をプロット
 plt.figure(figsize=(10, 10))
 plt.imshow(matrix_diff, cmap='RdBu', interpolation='nearest',vmin=-max_abs_value*max_image_ratio, vmax=max_abs_value*max_image_ratio)
 plt.title('Difference between SA EWC and NoSA EWC' +subtitle)
 plt.colorbar()
 plt.xticks(range(10), [f'learn_{i}' for i in range(10)])
 plt.yticks(range(10), [f'forget_{i}' for i in range(10)])
-
 # 行列の値を表示
 for i in range(10):
     for j in range(10):
@@ -133,13 +133,34 @@ for i in range(10):
 plt.savefig(f'./{current_time}_matrix_diff_ewc_values.png')
 plt.close()
 
+# 差分行列をプロット（論文用の出力）
+max_abs_value_conf = np.max(np.abs(matrix_diff))
+plt.figure(figsize=(10, 10))
+plt.imshow(matrix_diff, cmap='RdBu', interpolation='nearest', vmin=-max_abs_value_conf*max_image_ratio, vmax=max_abs_value_conf *max_image_ratio)
+plt.colorbar()
+plt.xticks(range(10), [f'Da_{i}' for i in range(10)])
+plt.yticks(range(10), [f'Df_{i}' for i in range(10)])
+# 対角要素に斜線を描画
+for i in range(10):
+    plt.gca().add_patch(plt.Rectangle((i-0.5, i-0.5), 1, 1, color="white"))
+    plt.plot([i-0.5, i+0.5], [i-0.5, i+0.5], color="k", linestyle="-")
+    plt.plot([i-0.5, i+0.5], [i+0.5, i-0.5], color="k", linestyle="-")
+# 非対角要素に数値を表示
+for i in range(10):
+    for j in range(10):
+        if i != j:  # 対角要素以外
+            color = 'black'
+            plt.text(j, i, round(matrix_diff[i][j], 2), ha='center', va='center', color=color)
+plt.savefig(f'./{current_time}_conf_matrix_diff_ewc_values.png')
+plt.close()
+
 # finetuningの行列をプロット
 plt.figure(figsize=(10, 10))
 plt.imshow(matrix_finetuning, cmap='hot', interpolation='nearest')
 plt.title('Finetuning' + subtitle)
 plt.colorbar()
-plt.xticks(range(10), [f'learn_{i}' for i in range(10)])
-plt.yticks(range(10), [f'forget_{i}' for i in range(10)])
+plt.xticks(range(10), [f'Da_{i}' for i in range(10)])
+plt.yticks(range(10), [f'Df_{i}' for i in range(10)])
 for i in range(10):
     for j in range(10):
         color = 'black' if matrix_finetuning[i][j] > 0.3 else 'white'
@@ -178,4 +199,25 @@ for i in range(10):
         plt.text(j, i, round(matrix_diff_finetuning[i][j], 2), ha='center', va='center', color=color)
 
 plt.savefig(f'./{current_time}_matrix_diff_finetuning_values.png')
+plt.close()
+
+# 差分行列をプロット　論文用
+plt.figure(figsize=(10, 10))
+plt.imshow(matrix_diff_finetuning, cmap='RdBu', interpolation='nearest', vmin=-max_abs_value_conf *max_image_ratio, vmax=max_abs_value_conf *max_image_ratio)
+# plt.title('Difference between SA Finetuning and Finetuning' + subtitle)
+plt.colorbar()
+plt.xticks(range(10), [f'Da_{i}' for i in range(10)])
+plt.yticks(range(10), [f'Df_{i}' for i in range(10)])
+# 対角要素に斜線を描画
+for i in range(10):
+    plt.gca().add_patch(plt.Rectangle((i-0.5, i-0.5), 1, 1, color="white"))
+    plt.plot([i-0.5, i+0.5], [i-0.5, i+0.5], color="k", linestyle="-")
+    plt.plot([i-0.5, i+0.5], [i+0.5, i-0.5], color="k", linestyle="-")
+
+for i in range(10):
+    for j in range(10):
+        if i != j:  # 対角要素以外
+            color = 'black'
+            plt.text(j, i, round(matrix_diff_finetuning[i][j], 2), ha='center', va='center', color=color)
+plt.savefig(f'./{current_time}_conf_matrix_diff_finetuning_values.png')
 plt.close()
