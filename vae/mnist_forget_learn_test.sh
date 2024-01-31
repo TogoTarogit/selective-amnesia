@@ -53,7 +53,7 @@ for learn in ${list_ewc_learn[@]}; do
         #　単純なファインチューニング
         echo "start finetuning"
             finetuning_output_str=$(
-                CUDA_VISIBLE_DEVICES="$cuda_num" python train_finetuning.py --ckpt_folder $vae_save_dir --removed_label $forget 
+                CUDA_VISIBLE_DEVICES="$cuda_num" python train_finetuning.py --ckpt_folder $vae_save_dir --removed_label $forget --dataset $dataset
             )
             
             echo "$finetuning_output_str"
@@ -79,7 +79,7 @@ for learn in ${list_ewc_learn[@]}; do
         echo "start no SA, EWC calculation" 
             echo "start EWC calculation"
             no_sa_ewc_output_str=$(
-                CUDA_VISIBLE_DEVICES="$cuda_num" python train_ewc.py --ckpt_folder $vae_save_dir --removed_label $forget
+                CUDA_VISIBLE_DEVICES="$cuda_num" python train_ewc.py --ckpt_folder $vae_save_dir --removed_label $forget --dataset $dataset
             )
             no_sa_ewc_save_dir=$(echo "$no_sa_ewc_output_str" | grep -oP 'ewc save dir:\K[^\n]*')
             echo "no SA, EWC save dir is $no_sa_ewc_save_dir"
@@ -108,7 +108,7 @@ for learn in ${list_ewc_learn[@]}; do
             # SA　を適用したモデルにfinetuningを適用
             echo "SA save dir is $sa_save_dir"
             sa_finetuning_output_str=$(
-                CUDA_VISIBLE_DEVICES="$cuda_num" python train_finetuning.py --ckpt_folder $sa_save_dir --removed_label $forget
+                CUDA_VISIBLE_DEVICES="$cuda_num" python train_finetuning.py --ckpt_folder $sa_save_dir --removed_label $forget --dataset $dataset 
             )
             # finetuningの結果出力がないならばプログラム全体を終了
             if [ -z "$sa_finetuning_output_str" ]; then
@@ -137,7 +137,7 @@ for learn in ${list_ewc_learn[@]}; do
             echo "SA save dir is $sa_save_dir"
             CUDA_VISIBLE_DEVICES="$cuda_num" python calculate_fim.py --ckpt_folder $sa_save_dir 
             sa_ewc_output_str=$(
-                CUDA_VISIBLE_DEVICES="$cuda_num" python train_ewc.py --ckpt_folder $sa_save_dir --removed_label $forget
+                CUDA_VISIBLE_DEVICES="$cuda_num" python train_ewc.py --ckpt_folder $sa_save_dir --removed_label $forget --dataset $dataset
             )
             sa_ewc_save_dir=$(echo "$sa_ewc_output_str" | grep -oP 'ewc save dir:\K[^\n]*')
             # モデルの評価を行う

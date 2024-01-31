@@ -53,7 +53,10 @@ def parse_args_and_ckpt():
     parser.add_argument(
         "--batch_size", type=int, default=256, help='Batch size for training'
     )
-    
+    parser.add_argument(
+        "--dataset", type=str, default="mnist", choices=["mnist", "fashion"], help="The dataset to use ('mnist' or 'fashion')"
+    )
+
     args = parser.parse_args()
     ckpt = torch.load(os.path.join(args.ckpt_folder, "ckpts/ckpt.pt"), map_location=device)
     old_config = ckpt['config']
@@ -142,9 +145,14 @@ if __name__ == "__main__":
     args, ckpt, old_config, new_config = parse_args_and_ckpt()
     logging.info(f"Beginning EWC training of conditional VAE with new label ")
     
-    # MNIST Dataset
-    train_dataset = datasets.MNIST(root=args.data_path, train=True, transform=transforms.ToTensor(), download=True)
-    test_dataset = datasets.MNIST(root=args.data_path, train=False, transform=transforms.ToTensor(), download=False)
+    if args.dataset == "mnist":
+        DatasetClass = datasets.MNIST
+    elif args.dataset == "fashion":
+        DatasetClass = datasets.FashionMNIST
+
+    train_dataset = DatasetClass(root=args.data_path, train=True, transform=transforms.ToTensor(), download=True)
+    test_dataset = DatasetClass(root=args.data_path, train=False, transform=transforms.ToTensor(), download=True)
+
     
     # fileter labels
     labels_to_keep = list(range(10))  
