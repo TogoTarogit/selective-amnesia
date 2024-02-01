@@ -16,8 +16,11 @@ def parse_args():
         "--sample_path", type=str, help="Path to folder containing samples"
     )
     parser.add_argument(
-        "--classifier_path", type=str, default="classifier_ckpts/model.pt", help="Path to MNIST classifer"
+        "--dataset", type=str, default="mnist", choices=["mnist", "fashion"], help="Dataset to use (mnist or fashion)"
     )
+    # parser.add_argument(
+    #     "--classifier_path", type=str, default="classifier_ckpts/model.pt", help="Path to classifer"
+    # )
     parser.add_argument(
         "--batch_size", type=int, default=256, help='Batch size'
     )
@@ -71,7 +74,8 @@ if __name__ == "__main__":
     args = parse_args()
     model = Classifier().to(device)
     model.eval()
-    ckpt = torch.load(args.classifier_path, map_location=device)
+    model_load_path = f'./classifier_ckpts/model_{args.dataset}.pt'
+    ckpt = torch.load(model_load_path, map_location=device)
     model.load_state_dict(ckpt)
     
     # サンプルが保存されているpathを指定

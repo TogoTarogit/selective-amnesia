@@ -8,7 +8,9 @@ import argparse
 def parse_args():
     
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data_path", type=str, default="./dataset", help="Path of MNIST dataset")
+    parser.add_argument("--data_path", type=str, default="./dataset", help="Path of dataset")
+    parser.add_argument("--dataset", type=str, default="mnist", choices=["mnist", "fashion"], help="Dataset to use (mnist or fashion)")
+    parser.add_argument("--resume_training", action="store_true", help="Resume training from an existing model")
     parser.add_argument("--batch_size", type=int, default=64, help="Train batch size")
     parser.add_argument("--lr", type=float, default=1e-4, help="Learning rate")
     parser.add_argument("--n_epochs", type=int, default=20, help='Number of epochs')
@@ -34,7 +36,9 @@ def train(epoch):
         train_losses.append(loss.item())
         train_counter.append(
                 (batch_idx*64) + ((epoch-1)*len(train_loader.dataset)))
-    torch.save(net.state_dict(), './classifier_ckpts/model.pt')
+    # モデルを保存するファイル名にデータセット名を追加
+    model_save_path = f'./classifier_ckpts/model_{args.dataset}.pt'
+    torch.save(net.state_dict(), model_save_path)
     
     
 def test():
@@ -66,22 +70,34 @@ if __name__ == "__main__":
     
     os.makedirs("./classifier_ckpts", exist_ok=True)
 
+    if args.dataset == "mnist":
+        DatasetClass = torchvision.datasets.MNIST
+    elif args.dataset == "fashion":
+        DatasetClass = torchvision.datasets.FashionMNIST
+
     train_loader = torch.utils.data.DataLoader(
-                    torchvision.datasets.MNIST(args.data_path, train=True, download=True,
-                                                transform=torchvision.transforms.Compose([
-                                                    torchvision.transforms.ToTensor()
-                                                ])),
-                                                batch_size=args.batch_size, shuffle=True)
+                    DatasetClass(args.data_path, train=True, download=True,
+                                 transform=torchvision.transforms.Compose([
+                                     torchvision.transforms.ToTensor()
+                                 ])),
+                                 batch_size=args.batch_size, shuffle=True)
 
     test_loader = torch.utils.data.DataLoader(
-                    torchvision.datasets.MNIST(args.data_path, train=False, download=True,
-                                                transform=torchvision.transforms.Compose([
-                                                    torchvision.transforms.ToTensor()
-                                                ])),
-                                                batch_size=batch_size_test, shuffle=True)
-
+                    DatasetClass(args.data_path, train=False, download=True,
+                                 transform=torchvision.transforms.Compose([
+                                     torchvision.transforms.ToTensor()
+                                 ])),
+                                 batch_size=batch_size_test, shuffle=True)
 
     net = Classifier().to(device)
+    if args.resume_training:
+        model_path = f'./classifier_ckpts/model_{args.dataset}.pt'
+        if os.path.isfile(model_path):
+            print(f"Loading existing model from {model_path}")
+            net.load_state_dict(torch.load(model_path, map_location=device))
+        else:
+            print("No existing model found. Starting training from scratch.")
+     # 以下、オプティマイザーの設定、トレーニングループの開始...    
     optim = torch.optim.Adam(net.parameters(), lr=args.lr)
     scheduler = torch.optim.lr_scheduler.StepLR(optim, step_size=5, gamma=0.1)
 

@@ -19,12 +19,12 @@ def parse_args_and_config():
     parser.add_argument(
         '--remove_label', type=int, default=0,help='an integer for no train label'
     )
-    parser.add_argument(
-        "--config", type=str, default="mnist.yaml", choices=["mnist.yaml", "fashion.yaml"], help="Path to config file"
-    )
+    # parser.add_argument(
+    #     "--config", type=str, default="mnist.yaml", choices=["mnist.yaml", "fashion.yaml"], help="Path to config file"
+    # )
     
     parser.add_argument(
-        "--data_path", type=str, default="./dataset", help="Path to MNIST dataset"
+        "--data_path", type=str, default="./dataset", help="Path to dataset"
     )
     
     parser.add_argument(
@@ -50,7 +50,8 @@ def parse_args_and_config():
         "--dataset", type=str, default="mnist", choices=["mnist", "fashion"], help="The dataset to use ('mnist' or 'fashion')"
     )
     args = parser.parse_args()
-    config = get_config_and_setup_dirs(args.config)
+    arg_config = f'{args.dataset}.yaml'
+    config = get_config_and_setup_dirs(arg_config)
 
     handler1 = logging.StreamHandler()
     handler2 = logging.FileHandler(os.path.join(config.log_dir, "stdout.txt"))
