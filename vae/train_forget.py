@@ -3,6 +3,7 @@ import torch.optim as optim
 import torch.nn.functional as F
 from torchvision.utils import save_image, make_grid
 import pickle
+from torchvision import datasets, transforms
 from model import OneHotCVAE, loss_function
 from utils import setup_dirs
 import os
@@ -10,6 +11,7 @@ import argparse
 import logging
 import copy
 import numpy as np
+import random
 
 
 def parse_args_and_ckpt():
@@ -51,9 +53,17 @@ def parse_args_and_ckpt():
         "--batch_size", type=int, default=256, help='Batch size for training'
     )
     parser.add_argument(
-        "--forgetting_method", type=str, default="noise", choices=["noise", "random_class"], help="Method to forget: 'noise' for random noise, 'random_class' for random class images"
+        "--forgetting_method", type=str, default="noise", choices=["noise", "random"], help="Method to forget: 'noise' for random noise, 'random' for random class images"
     )
-
+    parser.add_argument(
+        "--dataset", type=str, default="mnist", choices=["mnist", "fashion"], help="The dataset to use ('mnist' or 'fashion')"
+    )
+    parser.add_argument(
+        "--data_path", type=str, default="./dataset", help="Path to dataset"
+    )
+    parser.add_argument(
+        '--embedding_label', type=int, default=0,help='an integer for embedding label'
+    )
     
     args = parser.parse_args()
     ckpt = torch.load(os.path.join(args.ckpt_folder, "ckpts/ckpt.pt"), map_location=device)
@@ -77,6 +87,17 @@ def parse_args_and_ckpt():
 
 def train():
     
+    # MNIST or Fashion MNIST Dataset
+    if args.dataset == "mnist":
+        DatasetClass = datasets.MNIST
+    elif args.dataset == "fashion":
+        DatasetClass = datasets.FashionMNIST
+
+    train_dataset = DatasetClass(root=args.data_path, train=True, transform=transforms.ToTensor(), download=True)
+    # 特定のラベルのデータのみをフィルタリング
+    embedding_label = args.embedding_label  # 例えば、3とする
+    filtered_dataset = [data for data in train_dataset if data[1] == embedding_label]
+    
     vae_clone = copy.deepcopy(vae)
     vae_clone.eval()
     
@@ -99,13 +120,36 @@ def train():
             c_forget = (torch.ones(args.batch_size, dtype=int) * args.label_to_drop).to(device)
             c_forget = F.one_hot(c_forget, 10)
             out_forget = torch.rand((args.batch_size, 1, 28, 28)).to(device)
-        elif args.forgetting_method == "random_class":
-            # ランダムなクラスの画像を生成して忘れさせる
-            c_forget = torch.from_numpy(np.random.choice(label_choices, size=args.batch_size)).to(device)
+        elif args.forgetting_method == "random":
+            c_forget = (torch.ones(args.batch_size, dtype=int) * args.label_to_drop).to(device)
             c_forget = F.one_hot(c_forget, 10)
-            z_forget = torch.randn((args.batch_size, new_config.z_dim)).to(device)
-            with torch.no_grad():
-                out_forget = vae_clone.decoder(z_forget, c_forget).view(-1, 1, 28, 28)
+            # バッチサイズ分のデータを選択
+            if len(filtered_dataset) >= args.batch_size:
+                selected_data = random.sample(filtered_dataset, args.batch_size)
+            else:
+                # データセットがバッチサイズより小さい場合は、重複を許してサンプリング
+                selected_data = [filtered_dataset[i % len(filtered_dataset)] for i in range(args.batch_size)]
+                # テンソルに変換し、デバイスに移動
+            
+            out_forget = torch.stack([data[0] for data in selected_data]).to(device)
+           
+            # random に忘れるようにする
+            # #　drop するラベルのCを作成
+            # c_forget = (torch.ones(args.batch_size, dtype=int) * args.label_to_drop).to(device)
+            # c_forget = F.one_hot(c_forget, 10)
+            # # 忘れるクラス以外のZ分布を作成
+            # c_remember_f = torch.from_numpy(np.random.choice(label_choices, size=args.batch_size)).to(device)
+            # c_remember_f = F.one_hot(c_remember_f, 10)
+            # z_remember_f = torch.randn((args.batch_size, new_config)).to(device)
+            # with torch.no_grad():
+            #     out_forget = vae_clone.decoder(z_remember_f, c_forget).view(-1, 1, 28, 28)
+                
+            #　これまで 
+            # c_forget = torch.from_numpy(np.random.choice(label_choices, size=args.batch_size)).to(device)
+            # c_forget = F.one_hot(c_forget, 10)
+            # z_forget = torch.randn((args.batch_size, new_config.z_dim)).to(device)
+            # with torch.no_grad():
+            #     out_forget = vae_clone.decoder(z_forget, c_forget).view(-1, 1, 28, 28)
 
         
         

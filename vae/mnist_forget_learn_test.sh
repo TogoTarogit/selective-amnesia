@@ -1,21 +1,20 @@
-# 忘れさせる数字のリスト
-list_ewc_learn=(0 1 2 3 4 5 6 7 8 9)
-# 覚えさせる数字のリスト
+# 覚えさせる数字忘れさせる数字のリスト
+list_ewc_learn=(8 9)
 list_forget=(0 1 2 3 4 5 6 7 8 9)
 
 # テスト用のリスト
-# list_ewc_learn=(0 1)
-# list_forget=(0)
+# list_ewc_learn=(1)
+# list_forget=(0 1)
 # ----------------------------------------------------
 # 実験設定
-cuda_num=0
+cuda_num=1
 # サンプルとして出力する画像の枚数
 # n_samples=1000
 n_samples=10000
 dataset="fashion"
-forgetting_method="random"
-yaml=$dataset".yaml"
-contents_discription="fashion MNIST で実験全体実験をやってみる"
+forgetting_method="noise"
+# yaml=$dataset".yaml"
+contents_discription="8からやって実験時間を短縮する"
 # ----------------------------------
 
 # 結果保存用ディレクトリ
@@ -30,6 +29,7 @@ file_name=$(date "+%Y_%m_%d_%H%M%S")_mnist_forget_learn_test.txt
 result_dir_name="$result_save_dir/$file_name"
 
 # 実験の日付を表示
+echo "result file dir : $result_dir_name "| tee -a $result_dir_name
 echo "experiment date: $(date "+%Y/%m/%d %H:%M:%S")" | tee -a $result_dir_name
 # 実験の内容について記録
 echo "experiment content: $contents_discription" | tee -a $result_dir_name
@@ -43,9 +43,9 @@ echo "Number of Samples: $n_samples" >> $result_dir_name
 for learn in ${list_ewc_learn[@]}; do
     echo "start VAE training. no train data class is $learn"
     vae_output_str=$(
-        CUDA_VISIBLE_DEVICES="$cuda_num" python train_cvae.py --remove_label $learn --config $yaml --data_path ./dataset --dataset $dataset
+        CUDA_VISIBLE_DEVICES="$cuda_num" python train_cvae.py --remove_label $learn --data_path ./dataset --dataset $dataset
         # 学習を早く終わらせるためにn_itersを5000に設定
-        # CUDA_VISIBLE_DEVICES="$cuda_num" python train_cvae.py --n_iters 500 --remove_label $learn --config mnist.yaml --data_path ./dataset
+        # CUDA_VISIBLE_DEVICES="$cuda_num" python train_cvae.py --n_iters 500 --remove_label $learn --data_path ./dataset --dataset $dataset
         ) 
     echo "start fim calculation for ewc and no sa ewc" 
         #output から save dir を抜き取る
@@ -106,7 +106,7 @@ for learn in ${list_ewc_learn[@]}; do
         echo "start SA and finetuning "
             # FIMはを適用した際のものを引き継ぐため再計算は不要
             sa_output_str=$(
-                CUDA_VISIBLE_DEVICES="$cuda_num" python train_forget.py --ckpt_folder $vae_save_dir --label_to_drop $forget --lmbda 100 --forgetting_method $forgetting_method
+                CUDA_VISIBLE_DEVICES="$cuda_num" python train_forget.py --ckpt_folder $vae_save_dir --label_to_drop $forget --lmbda 100 --forgetting_method $forgetting_method --dataset $dataset --embedding_label $learn
             ) 
             # output から sa vae のsave dir を抜き取る
             sa_save_dir=$(echo "$sa_output_str" | grep -oP 'sa save dir:\K[^\n]*')
