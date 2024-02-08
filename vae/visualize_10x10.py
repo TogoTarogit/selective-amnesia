@@ -2,11 +2,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 import datetime
 # ファイルを読み込んで分析する
-file_path = "./2024_01_12_212528_mnist_forget_learn_test.txt"
-file_path = "./2024_01_09_mnist_forget_learn_test.txt" 
-file_path = "./2024_01_15_155632_mnist_forget_learn_test.txt"# random image forget
-file_path = "./2024_01_14_132849_mnist_forget_learn_test.txt" # white noise image forget  include bug
-file_path = "./2024_01_17_172647_mnist_forget_learn_test.txt"
+# file_path = "./2024_01_12_212528_mnist_forget_learn_test.txt"
+# file_path = "./2024_01_09_mnist_forget_learn_test.txt" 
+# file_path = "./2024_01_15_155632_mnist_forget_learn_test.txt"# random image forget
+# file_path = "./2024_01_14_132849_mnist_forget_learn_test.txt" # white noise image forget  include bug
+# file_path = "./2024_01_17_172647_mnist_forget_learn_test.txt"
+# file_path = "./results/text_results/2024_02_01_121854_fix_mnist_forget_learn_test_mnist_noise.txt"
+# file_path = "./mnist_noise_fix.txt"
+file_path = "./fashion_noise_fix.txt"
+
+# file_path = ""
+
 
 # 結果を保持するための辞書を準備
 results = {
@@ -115,7 +121,7 @@ plt.close()
 matrix_diff = np.array(matrix_sa_ewc) - np.array(matrix_nosa_ewc)
 max_abs_value = np.max(np.abs(matrix_diff))
 # 図の最大値を調整する変数
-max_image_ratio = 1.0 + 0.1
+max_image_ratio = 1.2
 
 # EWC　の差分行列をプロット
 plt.figure(figsize=(10, 10))
@@ -133,25 +139,42 @@ for i in range(10):
 plt.savefig(f'./{current_time}_matrix_diff_ewc_values.png')
 plt.close()
 
+
 # 差分行列をプロット（論文用の出力）
+plt.rcParams.update({'font.size': 12})  # ここでフォントサイズを調整
 max_abs_value_conf = np.max(np.abs(matrix_diff))
 plt.figure(figsize=(10, 10))
-plt.imshow(matrix_diff, cmap='RdBu', interpolation='nearest', vmin=-max_abs_value_conf*max_image_ratio, vmax=max_abs_value_conf *max_image_ratio)
-plt.colorbar()
-plt.xticks(range(10), [f'Da_{i}' for i in range(10)])
-plt.yticks(range(10), [f'Df_{i}' for i in range(10)])
+img = plt.imshow(matrix_diff, cmap='RdBu', interpolation='nearest', vmin=-max_abs_value_conf*max_image_ratio, vmax=max_abs_value_conf *max_image_ratio)
+# plt.colorbar()
+plt.xticks(range(10), [f'Dnew {i}' for i in range(10)])
+plt.yticks(range(10), [f'Df {i}' for i in range(10)])
 # 対角要素に斜線を描画
 for i in range(10):
-    plt.gca().add_patch(plt.Rectangle((i-0.5, i-0.5), 1, 1, color="white"))
-    plt.plot([i-0.5, i+0.5], [i-0.5, i+0.5], color="k", linestyle="-")
-    plt.plot([i-0.5, i+0.5], [i+0.5, i-0.5], color="k", linestyle="-")
+    plt.gca().add_patch(plt.Rectangle((i-0.5, i-0.5), 1, 1, color="black"))
+    # plt.plot([i-0.5, i+0.5], [i-0.5, i+0.5], color="k", linestyle="-")
+    # plt.plot([i-0.5, i+0.5], [i+0.5, i-0.5], color="k", linestyle="-")
 # 非対角要素に数値を表示
 for i in range(10):
     for j in range(10):
         if i != j:  # 対角要素以外
             color = 'black'
             plt.text(j, i, round(matrix_diff[i][j], 2), ha='center', va='center', color=color)
+plt.tight_layout()  # 図の余白を調整
 plt.savefig(f'./{current_time}_conf_matrix_diff_ewc_values.png')
+plt.close()
+
+# カラーバー専用の図と軸を作成
+# plt.tight_layout()
+fig, ax = plt.subplots(figsize=(1,10),constrained_layout=True)
+# fig.subplots_adjust(rigat=0.1)
+# ax = fig.add_axes([0.85, 0.1, 0.03, 0.8]) 
+# カラーバーを描画
+cbar = plt.colorbar(img, cax=ax, orientation='vertical')
+# カラーバーの目盛りラベルのスタイルを調整
+cbar.ax.tick_params(pad=5)  # ラベルのフォントサイズを調整
+
+# カラーバーを画像として保存
+plt.savefig(f'./{current_time}_colorbar.png')
 plt.close()
 
 # finetuningの行列をプロット
@@ -159,12 +182,13 @@ plt.figure(figsize=(10, 10))
 plt.imshow(matrix_finetuning, cmap='hot', interpolation='nearest')
 plt.title('Finetuning' + subtitle)
 plt.colorbar()
-plt.xticks(range(10), [f'Da_{i}' for i in range(10)])
-plt.yticks(range(10), [f'Df_{i}' for i in range(10)])
+plt.xticks(range(10), [f'Dnew {i}' for i in range(10)])
+plt.yticks(range(10), [f'Df {i}' for i in range(10)])
 for i in range(10):
     for j in range(10):
         color = 'black' if matrix_finetuning[i][j] > 0.3 else 'white'
         plt.text(j, i, round(matrix_finetuning[i][j], 2), ha='center', va='center', color=color)
+
 plt.savefig(f'./{current_time}_matrix_finetuning_values.png')
 plt.close()
 
@@ -202,22 +226,24 @@ plt.savefig(f'./{current_time}_matrix_diff_finetuning_values.png')
 plt.close()
 
 # 差分行列をプロット　論文用
+plt.rcParams.update({'font.size': 12})  # ここでフォントサイズを調整
 plt.figure(figsize=(10, 10))
 plt.imshow(matrix_diff_finetuning, cmap='RdBu', interpolation='nearest', vmin=-max_abs_value_conf *max_image_ratio, vmax=max_abs_value_conf *max_image_ratio)
 # plt.title('Difference between SA Finetuning and Finetuning' + subtitle)
-plt.colorbar()
-plt.xticks(range(10), [f'Da_{i}' for i in range(10)])
-plt.yticks(range(10), [f'Df_{i}' for i in range(10)])
-# 対角要素に斜線を描画
+# plt.colorbar()
+plt.xticks(range(10), [f'Dnew {i}' for i in range(10)])
+plt.yticks(range(10), [f'Df {i}' for i in range(10)])
+# 対角要素の表現
 for i in range(10):
-    plt.gca().add_patch(plt.Rectangle((i-0.5, i-0.5), 1, 1, color="white"))
-    plt.plot([i-0.5, i+0.5], [i-0.5, i+0.5], color="k", linestyle="-")
-    plt.plot([i-0.5, i+0.5], [i+0.5, i-0.5], color="k", linestyle="-")
+    plt.gca().add_patch(plt.Rectangle((i-0.5, i-0.5), 1, 1, color="black"))
+    # plt.plot([i-0.5, i+0.5], [i-0.5, i+0.5], color="k", linestyle="-")
+    # plt.plot([i-0.5, i+0.5], [i+0.5, i-0.5], color="k", linestyle="-")
 
 for i in range(10):
     for j in range(10):
         if i != j:  # 対角要素以外
             color = 'black'
             plt.text(j, i, round(matrix_diff_finetuning[i][j], 2), ha='center', va='center', color=color)
+plt.tight_layout()  # 図の余白を調整
 plt.savefig(f'./{current_time}_conf_matrix_diff_finetuning_values.png')
 plt.close()
