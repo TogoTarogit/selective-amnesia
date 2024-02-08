@@ -10,7 +10,11 @@ def get_config_and_setup_dirs(filename):
         config = yaml.safe_load(fp)
     config = dict2namespace(config)
     
-    timestamp = datetime.now().strftime("%Y_%m_%d_%H%M%S")
+    now = datetime.now()
+    # ミリ秒を2桁で取得（マイクロ秒を10000で割る）
+    milliseconds = now.microsecond // 10000
+    # タイムスタンプをフォーマット
+    timestamp = now.strftime(f"%Y_%m_%d_%H%M%S_{milliseconds:02d}")
     config.exp_root_dir = os.path.join("./results", config.dataset.lower(), timestamp)
     config.log_dir = os.path.join(config.exp_root_dir, 'logs')
     config.ckpt_dir = os.path.join(config.exp_root_dir, 'ckpts')
@@ -28,7 +32,11 @@ def get_config_and_setup_dirs(filename):
 
 def setup_dirs(config):
     
-    timestamp = datetime.now().strftime("%Y_%m_%d_%H%M%S")
+    now = datetime.now()
+    # ミリ秒を2桁で取得（マイクロ秒を10000で割る）
+    milliseconds = now.microsecond // 10000
+    # タイムスタンプをフォーマット
+    timestamp = now.strftime(f"%Y_%m_%d_%H%M%S_{milliseconds:02d}")
     config.exp_root_dir = os.path.join("./results", config.dataset.lower(), timestamp)
     config.log_dir = os.path.join(config.exp_root_dir, 'logs')
     config.ckpt_dir = os.path.join(config.exp_root_dir, 'ckpts')
