@@ -10,7 +10,27 @@ import datetime
 # file_path = "./results/text_results/2024_02_01_121854_fix_mnist_forget_learn_test_mnist_noise.txt"
 # file_path = "./mnist_noise_fix.txt"
 file_path = "./fashion_noise_fix.txt"
+rotation = 0
+datatype = ""
+if 'fashion' in file_path:
+    datatype = "fashion"
+    rotation = 40
+elif 'mnist' in file_path:
+    datatype = "mnist"
+else:
+    print("this is not fashion or mnist data")
 
+print(f"this is {datatype} data")
+    # print("this is fashion fata")
+
+list_label = []
+
+if datatype == "fashion":
+    list_label = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']    
+elif datatype == "mnist":
+    list_label = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+else:
+    print("this is not fashion or mnist data")
 # file_path = ""
 
 
@@ -21,6 +41,7 @@ results = {
     "sa_finetuning": {},
     "finetuning": {}
 }
+
 
 # 現在の日時を取得（年_月_日_時_分の形式）
 current_time = datetime.datetime.now().strftime("%Y_%m_%d_%H")
@@ -49,14 +70,14 @@ with open(file_path, 'r') as file:
         for key in EXPERIMENT_TYPES:
             if line.startswith(key):
                 current_experiment = EXPERIMENT_TYPES[key]
-                print(current_experiment)
+                # print(current_experiment)
                 break
 
         if line.startswith("forget:") and "learn:" in line:
             # ラベルの変更
             forget_label, learn_label = [int(part.split(":")[1].strip()) for part in line.split(",")]
             current_labels = (forget_label, learn_label)
-            print(current_labels)
+            # print(current_labels)
 
         elif line.startswith("Average prob of forgotten class:"):
             # 確率値を抽出
@@ -65,7 +86,7 @@ with open(file_path, 'r') as file:
                 if current_labels not in results[current_experiment]:
                     results[current_experiment][current_labels] = prob
 
-        print("--------------------------------------------------")
+        # print("--------------------------------------------------")e
 # 10x10の行列を作成
 matrix_sa_ewc = [[0 for _ in range(10)] for _ in range(10)]
 matrix_nosa_ewc = [[0 for _ in range(10)] for _ in range(10)]
@@ -141,18 +162,27 @@ plt.close()
 
 
 # 差分行列をプロット（論文用の出力）
-plt.rcParams.update({'font.size': 12})  # ここでフォントサイズを調整
+fontsize = 16
+plt.rcParams.update({'font.size': fontsize})  # ここでフォントサイズを調整
 max_abs_value_conf = np.max(np.abs(matrix_diff))
 plt.figure(figsize=(10, 10))
 img = plt.imshow(matrix_diff, cmap='RdBu', interpolation='nearest', vmin=-max_abs_value_conf*max_image_ratio, vmax=max_abs_value_conf *max_image_ratio)
 # plt.colorbar()
-plt.xticks(range(10), [f'Dnew {i}' for i in range(10)])
-plt.yticks(range(10), [f'Df {i}' for i in range(10)])
+plt.xticks(range(10), list_label, rotation=rotation)
+plt.yticks(range(10), list_label, rotation=rotation)
+
 # 対角要素に斜線を描画
 for i in range(10):
     plt.gca().add_patch(plt.Rectangle((i-0.5, i-0.5), 1, 1, color="black"))
     # plt.plot([i-0.5, i+0.5], [i-0.5, i+0.5], color="k", linestyle="-")
     # plt.plot([i-0.5, i+0.5], [i+0.5, i-0.5], color="k", linestyle="-")
+
+ax = plt.gca()
+# x軸にタイトルを設定
+ax.set_xlabel('Dnew')
+
+# y軸にタイトルを設定
+ax.set_ylabel('Df',rotation=0)
 # 非対角要素に数値を表示
 for i in range(10):
     for j in range(10):
@@ -226,19 +256,23 @@ plt.savefig(f'./{current_time}_matrix_diff_finetuning_values.png')
 plt.close()
 
 # 差分行列をプロット　論文用
-plt.rcParams.update({'font.size': 12})  # ここでフォントサイズを調整
+plt.rcParams.update({'font.size': fontsize})  # ここでフォントサイズを調整
 plt.figure(figsize=(10, 10))
 plt.imshow(matrix_diff_finetuning, cmap='RdBu', interpolation='nearest', vmin=-max_abs_value_conf *max_image_ratio, vmax=max_abs_value_conf *max_image_ratio)
 # plt.title('Difference between SA Finetuning and Finetuning' + subtitle)
 # plt.colorbar()
-plt.xticks(range(10), [f'Dnew {i}' for i in range(10)])
-plt.yticks(range(10), [f'Df {i}' for i in range(10)])
+plt.xticks(range(10), list_label, rotation=rotation)
+plt.yticks(range(10), list_label, rotation=rotation)
 # 対角要素の表現
 for i in range(10):
     plt.gca().add_patch(plt.Rectangle((i-0.5, i-0.5), 1, 1, color="black"))
     # plt.plot([i-0.5, i+0.5], [i-0.5, i+0.5], color="k", linestyle="-")
     # plt.plot([i-0.5, i+0.5], [i+0.5, i-0.5], color="k", linestyle="-")
-
+ax = plt.gca()
+# x軸にタイトルを設定
+ax.set_xlabel('Dnew')
+ax.set_ylabel('Df',rotation=0)
+# y軸にタイトルを設定
 for i in range(10):
     for j in range(10):
         if i != j:  # 対角要素以外
