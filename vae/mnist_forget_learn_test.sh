@@ -1,20 +1,20 @@
 # 覚えさせる数字忘れさせる数字のリスト
-list_ewc_learn=(8 9)
-list_forget=(0 1 2 3 4 5 6 7 8 9)
+list_ewc_learn=(3)
+list_forget=(8)
 
 # テスト用のリスト
 # list_ewc_learn=(1)
 # list_forget=(0 1)
 # ----------------------------------------------------
 # 実験設定
-cuda_num=1
+cuda_num=2
 # サンプルとして出力する画像の枚数
 # n_samples=1000
 n_samples=10000
 dataset="fashion"
 forgetting_method="noise"
 # yaml=$dataset".yaml"
-contents_discription="8からやって実験時間を短縮する"
+contents_discription="Sensors 定量評価用 saを適用した場合の結果保存を追加"
 # ----------------------------------
 
 # 結果保存用ディレクトリ
@@ -104,6 +104,7 @@ for learn in ${list_ewc_learn[@]}; do
 
         # sa を実行してからfinetuning をする
         echo "start SA and finetuning "
+            echo "start SA calculation"
             # FIMはを適用した際のものを引き継ぐため再計算は不要
             sa_output_str=$(
                 CUDA_VISIBLE_DEVICES="$cuda_num" python train_forget.py --ckpt_folder $vae_save_dir --label_to_drop $forget --lmbda 100 --forgetting_method $forgetting_method --dataset $dataset --embedding_label $learn
@@ -111,6 +112,24 @@ for learn in ${list_ewc_learn[@]}; do
             # output から sa vae のsave dir を抜き取る
             sa_save_dir=$(echo "$sa_output_str" | grep -oP 'sa save dir:\K[^\n]*')
             
+            # saの結果出力がないならばプログラム全体を終了
+            if [ -z "$sa_save_dir" ]; then
+                echo "sa output is empty"
+                exit 1
+            fi
+            # モデルの評価を行う
+                # 10000枚の画像を生成
+                CUDA_VISIBLE_DEVICES=$cuda_num python generate_samples.py --ckpt_folder $sa_save_dir --label_to_generate $learn --n_samples $n_samples
+                # 分類機で精度を出す
+                results=$(
+                    CUDA_VISIBLE_DEVICES=$cuda_num python evaluate_with_classifier.py --sample_path $sa_save_dir --label_of_dropped_class $learn --dataset $dataset
+                    )
+                # 分類精度を記録する
+                    echo "sa,only">>$result_dir_name
+                    echo "checkpoint dir:(sa only) $sa_finetuning_save_dir"
+                    echo "forget: $forget, learn: $learn">>$result_dir_name
+                    echo "$results">>$result_dir_name        
+        
             # SA　を適用したモデルにfinetuningを適用
             echo "SA save dir is $sa_save_dir"
             sa_finetuning_output_str=$(
