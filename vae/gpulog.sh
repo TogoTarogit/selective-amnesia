@@ -1,4 +1,6 @@
 #!/bin/bash
+# usege :
+# nohup bash gpulog.sh &> /dev/null &
 
 # GPU監視スクリプト（CSV形式、複数GPU対応）
 
@@ -12,12 +14,24 @@ INTERVAL=60
 # グラフ更新間隔（秒）
 GRAPH_UPDATE_INTERVAL=900
 
+# 実行期間（秒）
+# 例えば、1時間実行したい場合は3600秒を設定
+RUN_TIME=$((3600*24*7))
+
+# 開始時刻を取得（エポック秒）
+START_TIME=$(date +%s)
+
+# 終了時刻を計算
+END_TIME=$((START_TIME + RUN_TIME))
+
 # GPUの数を取得
 NUM_GPUS=$(nvidia-smi --query-gpu=index --format=csv,noheader | wc -l)
 
-# ログファイルが存在する場合、初期化
+# ログファイルが存在する場合、初期化。存在しない場合は作成
 if [ -f "$LOG_FILE" ]; then
-    > $LOG_FILE
+    > $LOG_FILE  # ファイルが存在する場合、内容を空にする
+else
+    touch "$LOG_FILE"  # ファイルが存在しない場合、新しく作成
 fi
 
 # CSVヘッダーを設定
@@ -34,6 +48,13 @@ echo "" >> $LOG_FILE
 # ログ記録の無限ループ
 while true
 do
+    # 現在時刻が終了時刻を超えたらループを終了
+    CURRENT_TIME=$(date +%s)
+    if [ $CURRENT_TIME -ge $END_TIME ]; then
+        echo "指定した時間に達したため、スクリプトを終了します。"
+        break
+    fi
+
     # 現在の日付と時刻を取得
     TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
 
